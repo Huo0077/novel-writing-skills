@@ -1,0 +1,35 @@
+{
+  "verification_source": "fresh_public_GitHub_v1.1_release_download",
+  "repository": "Huo0077/novel-writing-skills",
+  "release": "v1.1",
+  "archive_sha256": "270f8582414ee9515cc9ad8f81274781a48316db8195a4fd1bfec288f7a0728d",
+  "checksum_verified": true,
+  "tests": {
+    "total": 122,
+    "passed": 121,
+    "skipped": 1,
+    "failed": 0
+  },
+  "original_six_defects": "all_rejected_by_actual_execution",
+  "extra_invalid_cases": [
+    "string_confirmation_rejected",
+    "duplicate_entities_rejected"
+  ],
+  "question_contract_tests": {
+    "count": 10,
+    "passed": 10
+  },
+  "all_skills_link_question_protocol": 31,
+  "main_matches_release_critical_files": {
+    ".codex/skills/novel-canon/scripts/validate_novel_project.py": true,
+    ".novel/schemas/clarification-contract.md": true,
+    ".codex/skills/novel-router/SKILL.md": true,
+    ".codex/skills/novel-project-init/references/question-flow.md": true,
+    ".codex/skills/novel-reader-hypothesis-test/SKILL.md": true
+  },
+  "limitations": [
+    "questions_verified_by_protocol_and_fixed_artifacts_not_independent_model_dialogue",
+    "no_independent_reader_test",
+    "no_proof_of_long_form_memory_or_literary_quality"
+  ]
+}

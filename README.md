@@ -24,5 +24,17 @@ python .codex/skills/novel-router/scripts/suite.py validate --tests
 
 ## 版本
 
-GitHub Releases将分别提供原始v1.0和v1.1下载包及SHA-256。摘要用于完整性，不是签名。
+GitHub Releases已提供原始v1.0和v1.1下载包及SHA-256，建议使用v1.1。摘要用于完整性，不是签名。
 仓库源码来自对应版本的已核验包，没有复制当前真实小说正文、正史、提案或检查点。
+
+## v1.1 远程发布复核
+
+2026年10月14日，从公开GitHub Release重新下载v1.1，在隔离目录运行验收：**122项案例，121通过、1软链接权限项跳过、0失败**。
+
+- 原六类非法输入实际执行均被拒绝，额外字符串确认值/重复实体也拒绝。
+- 10项澄清协议/产物及配置集成测试通过，31个skill都链接共用提问规则。
+- Release ZIP与校验摘要一致；main与Release的五个关键修复文件逐字节一致。
+
+[复核报告](docs/novel-skills/GitHub-v1.1-复核报告.md) · [机器可读摘要](docs/novel-skills/verification/v1.1-public-verification.json)
+
+这不是独立模型对话、真人首次阅读或长篇文学质量验证。缺信息时正确提问是一套流程约束，不能仅凭结构测试保证每次模型执行都正确。
