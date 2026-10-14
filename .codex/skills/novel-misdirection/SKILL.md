@@ -26,3 +26,6 @@ description: Design fair competing explanations for novel clues and track how mi
 ## 资料
 - 竞争表：references/workflow-details.md
 - 作者侧例子：references/worked-example.md
+
+## 缺信息与用户选项
+遵守 `.novel/schemas/clarification-contract.md`：先查已有答案，一次问一个当前关键缺口，给2–3个不同方向及后果，并允许自定义或暂不决定。未知/冲突/授权缺失不能靠猜测补正史；仅暂停依赖步骤。用户答复按实际来源和明确范围记录，高风险许可不足仍交novel-canon暂停。

@@ -1,0 +1,10 @@
+question_id: Q-DEMO-MOTIF
+answer_status: partial
+user_answer: 保留红线名称，其余反应我再看。
+source_ref: fixture:simulated-answer
+confirmation_scope:
+- 保留指定三处红线名称
+still_unknown:
+- 怔愣是否必须保留及程度
+all_options_approved: false
+canon_updated: false

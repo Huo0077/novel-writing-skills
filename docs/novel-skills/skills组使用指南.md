@@ -1,6 +1,6 @@
 # 小说创作 skills 组使用指南
 
-版本：基础、状态、规划/正文、审查/多样化、伏笔/揭示/节奏层，2026-10-14。
+版本：v1.1（验证器修复 + 全组渐进提问），2026-10-14。
 本项目技能在 .codex/skills/，资料在 .novel/。这不是全局安装证明；当前会话若不能自动发现，可明确提供 SKILL.md 绝对路径并要求遵循。目录存在不代表某工具已经自动执行。
 
 ## 已实现的 31 项
@@ -76,7 +76,7 @@
 CANON + planned 不代表已经发生；plan_status=approved 是计划被批准，不代表 target_delta 已实现。
 章节/场景批准只在指定范围有效，不能推导当前允许完整核心揭示。已有具体批准可引用，避免重复追问。
 
-共享协议：story-record.md、planning-contract.md、audit-revision-contract.md、reveal-reader-contract.md、status-change.md、context-packet.md、review-report.md、checkpoint.md，位于 .novel/schemas/。
+共享协议：story-record.md、planning-contract.md、audit-revision-contract.md、reveal-reader-contract.md、clarification-contract.md、status-change.md、context-packet.md、review-report.md、checkpoint.md，位于 .novel/schemas/。
 把技能移用到另一项目时一并准备所需协议/模板/配置，但不要覆盖目标正史，不复制测试人物/情节为作品事实。
 
 ## 验证与能力边界
@@ -145,10 +145,23 @@ JSON配置中的terms可填写要查的词组，protected指定value与reason。
 python .codex/skills/novel-router/scripts/suite.py validate --tests
 python .codex/skills/novel-router/scripts/suite.py bootstrap 新作品目录
 python .codex/skills/novel-router/scripts/suite.py bootstrap 新作品目录 --apply
-python .codex/skills/novel-router/scripts/suite.py package dist/novel-writing-skills-v1.0.zip
-python .codex/skills/novel-router/scripts/suite.py inspect dist/novel-writing-skills-v1.0.zip
+python .codex/skills/novel-router/scripts/suite.py package dist/novel-writing-skills-v1.1.zip
+python .codex/skills/novel-router/scripts/suite.py inspect dist/novel-writing-skills-v1.1.zip
 ```
 bootstrap默认只预览；--apply新增技能、空白种子、隔离QA与说明，不覆盖已有文件，也不自动合并旧协议。执行目标需具备工作区权限。
-迁移ZIP包含31技能、8协议、17模板、默认配置及用于验收的虚构测试故事；测试在tests目录，不是创作者正史。包使用共享seed，非当前作品的canon/drafts/proposals/checkpoints。源文档/技能中的演练示例属于设计参考，不宣称包中“没有任何虚构故事”。
+迁移ZIP包含31技能、9协议、18模板、默认配置及用于验收的虚构测试故事；测试在tests目录，不是创作者正史。包使用共享seed，非当前作品的canon/drafts/proposals/checkpoints。源文档/技能中的演练示例属于设计参考，不宣称包中“没有任何虚构故事”。
 新目录可先检查包再解压；已有作品不要直接由外部解压器覆盖，先bootstrap预览。包内manifest的SHA-256保证一致性，不是来源签名。
 完整测试会报告操作系统无法运行的项（例如缺软链接权限）为skipped；不能把“OK含跳过”说成每项实际执行通过。
+
+
+## v1.1：缺关键资料就问用户
+
+先查已给资料，当前关键空位/冲突才问；一次一个问题，提供2–3项不同方向、后果/新增事实，并允许自定义或暂不决定。推荐不等于默认选择。
+用户选择后记录真实回复来源与范围，局部答复不授权整个故事；未知远期项可保持unknown，不强求完整设定百科。
+暂停依赖这项信息的写作/变更；无关安全统计或整理可继续。作者已明确许可的范围不无限重复追问。
+reader独立阅读只中性核阅读范围/缺文段，不提供真相候选或加载作者笔记。
+
+原测试发现的六类漏洞已补回归：medium也需确认、非空来源、类型枚举、状态/决定一致、空风险拒绝、实际配置解析。还检查字段类型/空实体/重复ID和重复YAML键。
+旧的早期简化配置格式不静默兼容/自动升级；校验提示缺字段，由用户选择按当前格式补齐，并保留旧配置。
+校验器结构合法不等于实际用户确认真实有效，仍需助手核来源；不是自动语义闸门或授权认证系统。
+历史v1.0报告仍保留为当时记录，新问题/修复看v1.1修复报告。

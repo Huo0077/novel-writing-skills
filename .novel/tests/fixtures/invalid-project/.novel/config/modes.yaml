@@ -1,15 +1,27 @@
-﻿schema_version: "1.0"
+schema_version: '1.0'
 risk_policy:
-  low: tentative
-  medium: batch_confirmation
-  high: immediate_confirmation
+  low:
+    storage: TENTATIVE
+    confirmation: none
+  medium:
+    storage: PROPOSAL
+    confirmation: batch
+  high:
+    storage: PROPOSAL
+    confirmation: immediate
 modes:
   author_assistant:
+    display_name: 作者助手模式
     initiative: low
-    checkpoint: task
+    batch_scope: task
+    checkpoint_cadence: task
   co_author:
+    display_name: 协同作者模式
     initiative: medium
-    checkpoint: scene
+    batch_scope: scene
+    checkpoint_cadence: scene
   semi_automatic:
+    display_name: 半自动长篇模式
     initiative: high
-    checkpoint: chapter
+    batch_scope: chapter
+    checkpoint_cadence: chapter

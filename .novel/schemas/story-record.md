@@ -57,3 +57,5 @@ proposal.status（proposed/accepted/modified/rejected）为审议进度，和 tr
 6. 用 novel-checkpoint 保存进度与未决项。
 
 作者真相与正文公开材料分别成产物；“禁止揭示”提示也不得写出隐藏答案。本协议是行为规约，不是自动事实推理数据库。
+
+缺信息与冲突依据 .novel/schemas/clarification-contract.md 逐项向用户提供选项；不默认批准候选，也不自动把一处回答扩成全局授权。

@@ -6,6 +6,7 @@ Run with filesystem permissions for the intended target. Hashes are not signatur
 from __future__ import annotations
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path, PurePosixPath
@@ -97,6 +98,19 @@ def validate_suite(root: Path) -> dict:
                 target = seed/category/p.name
                 if not target.is_file() or target.read_bytes() != p.read_bytes():
                     errors.append("seed mismatch: " + category + "/" + p.name)
+    # A static skill check must not silently skip broken live state/configuration.
+    if (root/".novel/project.yaml").is_file():
+        validator_path = root/".codex/skills/novel-canon/scripts/validate_novel_project.py"
+        if not validator_path.is_file():
+            errors.append("missing live-project validator: " + str(validator_path))
+        else:
+            try:
+                spec = importlib.util.spec_from_file_location("novel_live_validator", validator_path)
+                validator = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(validator)
+                errors.extend(validator.validate_project(root))
+            except Exception as exc:
+                errors.append("live-project validation failed: " + str(exc))
     report["warnings"].append("Static checks do not establish literary quality or independent reader performance.")
     return report
 

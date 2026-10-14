@@ -45,3 +45,7 @@ Do not load unrelated chapters, archived drafts, rejected ideas, or distant lore
 ## Resource
 
 - Detailed retrieval rules: `references/retrieval-rules.md`
+
+## 缺信息与用户选项
+作者协作路线遵守 `.novel/schemas/clarification-contract.md`：先查已有资料，一次问一个当前关键问题，给2–3个有差异的方向及影响，允许自定义或暂不决定，不替用户默认选。答复只确认明确范围，缺答案时暂停依赖步骤。
+reader独立阅读路线不读作者协议或候选答案；只中性询问阅读材料/范围缺口，不给作者真相选项、不恢复含秘密的档案。

@@ -1,0 +1,11 @@
+question_id: Q-DEMO-REVEAL
+user_answer: 先给我两个不明示的表达方向。
+confirmation_scope:
+- 仅表达候选
+risk: high
+requires_confirmation: true
+creator_decision: pending
+canon_updated: false
+still_unknown:
+- 真实身份未定
+- 完整揭示没有许可

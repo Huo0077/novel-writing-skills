@@ -26,3 +26,9 @@ creator_decision: pending
 - `high`：写入 `PROPOSAL`，立即暂停并请求确认；`requires_confirmation` 必须为 `true`。
 
 状态标签：`CANON`、`TENTATIVE`、`PROPOSAL`、`DRAFT`、`REJECTED`、`ARCHIVED`。
+
+## v1.1 严格校验
+必填字段必须有合法类型和实际值，不以键存在代替信息完整。change_id/summary/source_ref为非空字符串；affected_entities为非空、不重复的字符串列表；requires_confirmation必须是布尔值，medium与high均为true。
+change_type仅add_fact/update_state/relation_change/reveal/rule_change/retcon。
+审议对：proposed→pending，accepted→accepted，modified→modified，rejected→rejected。modified原案保留修订决定，新候选另建proposed/pending条目，不直接提交未经许可的修改。
+来源缺失或状态冲突先按clarification-contract向用户核实，不能替用户补虚假的确认。结构一致也不证明实际决定有效，仍需助手查来源与授权范围。

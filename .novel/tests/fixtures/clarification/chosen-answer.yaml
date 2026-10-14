@@ -1,0 +1,13 @@
+question_id: Q-DEMO-KEY
+selected_option: C
+user_answer: 选C，这场只核查门外路线，不进去。
+answer_status: chosen
+source_ref: fixture:simulated-user-selection-not-actual-story-approval
+confirmation_scope:
+- 当前场停在门外核查路线
+approved_key_return: false
+approved_core_reveal: false
+still_unknown:
+- 钥匙是否随后归还
+canon_updated: false
+next_step_status: ready_for_current_plan

@@ -1,0 +1,10 @@
+question_id: Q-DEMO-KEY
+selected_option: null
+user_answer: 我想让何青隔门传递钥匙，暂时不同行。
+answer_status: custom
+source_ref: fixture:simulated-user-answer-not-actual-author-decision
+confirmation_scope:
+- 仅讨论隔门传物的候选安排
+still_unknown:
+- 为何在门内，归还时间是否已发生
+canon_updated: false

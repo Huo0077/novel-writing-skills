@@ -1,0 +1,23 @@
+question_id: Q-DEMO-KEY
+missing_information: 上场钥匙交给何青，当前陈默是否能开门？
+blocking_scope: 当前开门动作及其后取物
+source_ref:
+- fixture:prior-key-transfer
+- fixture:current-paragraph
+question: 这次开门应怎样与已有钥匙记录衔接？
+options:
+- id: A
+  description: 保留钥匙在何青处，由她开门。
+  tradeoff: 需她在场；不改变陈默的物品记录。
+- id: B
+  description: 作者补充确认她此前已把钥匙交还。
+  tradeoff: 需归还时点/来源，后文持有记录可能要同步。
+- id: C
+  description: 陈默先停在门外，只核查路线。
+  tradeoff: 保留当前状态，但本场不进入仓库。
+custom_answer: true
+undecided: true
+selected_option: null
+user_answer: null
+confirmation_scope: []
+answer_status: unanswered

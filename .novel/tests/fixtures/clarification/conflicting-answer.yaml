@@ -1,0 +1,16 @@
+question_id: Q-DEMO-CONFLICT
+existing_source: fixture:canon-key-held-by-He
+user_answer: 钥匙一直在陈默手里。
+user_answer_source: fixture:simulated-new-answer
+conflict: 旧来源写上一场交给何青，新答复否认转移。
+options:
+- id: A
+  description: 以旧转移事实为准，修改当前取钥匙动作。
+  tradeoff: 保留此前人物互动。
+- id: B
+  description: 作者决定修改旧转移事实，并检查后文持有记录。
+  tradeoff: 需要回溯更新依赖段落。
+custom_answer: true
+undecided: true
+next_step_status: clarification_needed
+canon_updated: false
