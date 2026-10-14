@@ -1,0 +1,40 @@
+scope: 三个已见选段，非全书
+coverage:
+  read_sources:
+  - fixture:P1.txt
+  - fixture:P2.txt
+  - fixture:P3.txt
+  not_read:
+  - 完整章节
+  - 后续救人段落
+clues:
+- clue_id: F-D1
+  secret_ref: I-DEMO-CANCEL
+  window: P1
+  lifecycle: planted-in-fixture
+  carrier: action
+  surface_function: 为排队访客发押票并疏通门口
+  visible_evidence: 先看证件再取旧号段票，声称里面认
+  source_ref: fixture:P1.txt
+  salience: editor_subjective_1
+  next_step: 登记时检验旧号是否被接受
+- clue_id: F-D2
+  secret_ref: I-DEMO-CANCEL
+  window: P2
+  lifecycle: planted-in-fixture
+  carrier: record_absence
+  surface_function: 检索路线受阻，需要回执才能查登记
+  visible_evidence: 第十六行贴窄纸，窗口不揭，指回门房
+  source_ref: fixture:P2.txt
+  salience: editor_subjective_2
+  next_step: 核查贴纸和回执规则
+- clue_id: F-D3
+  secret_ref: I-DEMO-CANCEL
+  window: P3
+  lifecycle: planted-in-fixture
+  carrier: dialogue_rule
+  surface_function: 答复回执去哪里找，并推动离开窗口的选择
+  visible_evidence: 注销贴纸，两联回执，经手人持其中一联
+  source_ref: fixture:P3.txt
+  salience: editor_subjective_2
+  next_step: 找到实际经手者及留存回执证据

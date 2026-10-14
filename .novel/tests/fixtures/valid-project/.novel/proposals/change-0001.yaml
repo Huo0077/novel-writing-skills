@@ -1,0 +1,10 @@
+﻿change_id: SC-0001
+status: proposed
+risk: low
+source_ref: chapter-01/scene-01
+change_type: add_fact
+summary: "角色进入北城"
+affected_entities:
+  - character:林渡
+requires_confirmation: false
+creator_decision: pending

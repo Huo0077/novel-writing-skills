@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说章节规划"
+  short_description: "设定一章有限目标、场景依赖与情绪节奏，控制信息增量并避免机械反转结构"
+  default_prompt: "请使用 $novel-chapter-plan 处理当前小说任务，并遵守批准范围、信息边界和状态确认。"

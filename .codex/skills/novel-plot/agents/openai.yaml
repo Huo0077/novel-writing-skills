@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说情节因果"
+  short_description: "维护主支线事件、人物选择与后果，标记关键节点并规划下一步安全进度"
+  default_prompt: "请使用 $novel-plot 处理当前小说任务，并把未确认事实保留为提案。"

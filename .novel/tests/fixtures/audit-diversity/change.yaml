@@ -1,0 +1,15 @@
+change_id: SC-DEMO-TOUCH
+status: proposed
+risk: medium
+source_ref: fixture:revised.txt#p5
+change_type: add_fact
+summary: 语言修订候选新增触碰戒圈动作，可能增强线索显眼度
+before: 只收票
+after: 左手收票时碰到戒圈
+affected_entities:
+- C-demo
+- F-silver-ring
+downstream_impact:
+- 需查当前线索窗口与后文触碰记录
+requires_confirmation: true
+creator_decision: pending

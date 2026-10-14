@@ -1,0 +1,40 @@
+review_id: REVIEW-DEMO-02A
+source_ref: fixture:draft.md
+severity: medium
+facts_observed:
+- 林渡用左手处理零钱，右腕夹板仍在。
+- 林渡只告诉守门人仓房已空。
+- 守门人给出旧码头方向，要求查证后回来说明。
+- 林渡接受先查证但限制披露范围。
+- 零钱退回，纸片未交给林渡。
+inferences:
+- 守门人可能在控制信息交换；动机未确定。
+state_changes:
+- entity: C-001
+  before: 无当前方向
+  after: 得到尚未验证的旧码头方向
+- entity: C-001
+  before: 未作此次报告承诺
+  after: 承诺先查证并在可披露范围说明
+contradictions: []
+information_leaks: []
+narrative_function:
+  changed: 新增局部方向与有限承诺；保留必要合作和戒备
+  missing: 未验证入口，也未进入塔
+foreshadowing_changes: []
+style_observations:
+- 角色关注不同：林渡问可达性，顾沉限制承诺。
+proposal_candidates:
+- SC-DEMO-LOCAL
+- SC-DEMO-PROMISE
+- SC-DEMO-DETAIL
+creator_questions:
+- 是否批准把旧码头方向和有限报告承诺加入当前分支？
+observed_delta:
+- unverified_local_direction
+- limited_reporting_promise
+- cooperation_without_reconciliation
+target_comparison:
+  entrance_route_verified: not_achieved
+  cooperation_without_reconciliation: supported
+relation_observation: cooperation_without_reconciliation

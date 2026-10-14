@@ -1,0 +1,9 @@
+﻿project_id: novel-project
+schema_version: "1.0"
+title: "未命名小说"
+mode: author_assistant
+genre: unspecified
+current:
+  volume: 0
+  chapter: 0
+  scene: 0

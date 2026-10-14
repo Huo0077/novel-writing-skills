@@ -1,0 +1,22 @@
+hypotheses:
+- hypothesis_id: H-ADMIN
+  explanation: 仍在使用旧票本；贴纸只是统一注销规则，守门人按职责指路。
+  evidence_refs:
+  - P1:里面认旧号
+  - P2:窗口按回执规则办理
+  - P3:注销行普遍贴纸
+  limitations:
+  - 不能解释为何特定票从抽屉底取；未证其与旧事件有直接关系。
+  disconfirmation_gate: 比较其他访客票据及找到回执实际经手者
+- hypothesis_id: H-RECORD-CONTROL
+  explanation: 某个经手人控制可查资料，守门人可能知情或参与，但并非已经证实。
+  evidence_refs:
+  - P1:看证件后挑票
+  - P2:窗口指门房
+  - P3:经手人留回执
+  limitations:
+  - 没见签名/回执，不能断言守门人就是经手者，更不能推保护对象。
+  disconfirmation_gate: 实际经手签名及动机证据
+narrator_false_assertion_allowed: false
+author_comparison_mode: manual_rehearsal
+creator_decision: pending

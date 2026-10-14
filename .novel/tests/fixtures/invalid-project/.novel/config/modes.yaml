@@ -1,0 +1,15 @@
+﻿schema_version: "1.0"
+risk_policy:
+  low: tentative
+  medium: batch_confirmation
+  high: immediate_confirmation
+modes:
+  author_assistant:
+    initiative: low
+    checkpoint: task
+  co_author:
+    initiative: medium
+    checkpoint: scene
+  semi_automatic:
+    initiative: high
+    checkpoint: chapter

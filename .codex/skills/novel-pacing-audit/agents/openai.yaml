@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说叙事节奏审查"
+  short_description: "检查信息负荷、冲突层级、情绪积累和高潮余波，给有范围的修复而不强求每章反转"
+  default_prompt: "请使用 $novel-pacing-audit 处理当前小说任务，并区分作者真相、读者证据与实际测试状态。"

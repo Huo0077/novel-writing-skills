@@ -1,0 +1,29 @@
+profiles:
+- profile_id: VOICE-DEMO-01
+  character_ref: C-001
+  truth_status: TENTATIVE
+  source_ref:
+  - fixture:voice-example-approval
+  attention: 可达性、距离、救人时限
+  speech_strategy: 短问具体条件，少谈全盘意图
+  syntax: 问句短，行动节奏受伤势限制
+  under_pressure: 省略客套但不泄露全部计划
+  catchphrase: unknown
+  knowledge_refs:
+  - public:I-001=unknown
+  forbidden_claims:
+  - author_truth_I-001
+- profile_id: VOICE-DEMO-02
+  character_ref: C-002
+  truth_status: TENTATIVE
+  source_ref:
+  - fixture:voice-example-approval
+  attention: 交换范围、验证条件与风险
+  speech_strategy: 先限制承诺，再追问对方如何担保
+  syntax: 条件句较多，但不固定每句格式
+  under_pressure: 更直接指出代价
+  catchphrase: unknown
+  knowledge_refs:
+  - public:local-investigation
+  forbidden_claims:
+  - author_truth_I-001

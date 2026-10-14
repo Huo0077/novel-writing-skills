@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说正文生成"
+  short_description: "按批准场景和公开信息包生成有限正文，回审实际变化并交接分级提案与检查点"
+  default_prompt: "请使用 $novel-draft 处理当前小说任务，并遵守批准范围、信息边界和状态确认。"

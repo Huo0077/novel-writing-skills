@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说线索分布"
+  short_description: "安排跨章线索的表层用途、载体和变化，追踪实际证据而不按固定频率重复提示"
+  default_prompt: "请使用 $novel-clue-distribution 处理当前小说任务，并区分作者真相、读者证据与实际测试状态。"

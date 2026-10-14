@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说总纲规划"
+  short_description: "把故事命题拆成分卷与阶段目标，控制核心冲突呈现、人物弧光与信息窗口"
+  default_prompt: "请使用 $novel-outline 处理当前小说任务，并遵守批准范围、信息边界和状态确认。"

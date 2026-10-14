@@ -1,0 +1,9 @@
+packet_id: READ-DEMO-01
+material_version: 1
+result_status: prepared_not_run
+independent_run_performed: false
+independent_source: null
+reader_response_ref: null
+reader_guess: null
+context_contamination: 当前执行者已读作者答案，因此不能当独立阅读者
+notes: 只有材料准备，尚未运行独立模型或真人读者。

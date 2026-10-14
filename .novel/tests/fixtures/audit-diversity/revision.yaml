@@ -1,0 +1,23 @@
+revision_id: REV-DEMO-04
+original_ref: fixture:original.txt
+revised_ref: fixture:revised.txt
+approved_scope: 测试允许语言层候选，动作候选仅展示DRAFT待确认
+truth_status: DRAFT
+applied_candidates:
+- ALT-DEMO-1
+- ALT-DEMO-2
+- ALT-DEMO-3-as-unconfirmed-branch
+skipped_candidates:
+- 不要将所有银戒指改为近义名称
+meaning_constraints:
+- 承诺范围不扩张
+- 角色不新增核心知识
+- 合作关系不自动和解
+new_facts:
+- 第三处新增左手指尖触圈动作
+protected_terms_preserved:
+- 银戒指
+review_ref: fixture:review.yaml
+downstream_impact_ref: fixture:impact.yaml
+creator_decision: pending
+handoff_status: creator_pending

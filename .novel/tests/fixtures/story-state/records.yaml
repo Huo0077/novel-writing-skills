@@ -1,0 +1,91 @@
+schema_version: '1.1'
+records:
+- record_id: W-001
+  record_type: world
+  truth_status: CANON
+  lifecycle: active
+  source_ref:
+  - fixture-creator-01
+  valid_from: day-1
+  depends_on: []
+  supersedes: null
+  rule: 无月痕者不能独自跨过灰塔门槛。
+  cost: 持痕者每次开门损失一段记忆。
+  exceptions: []
+- record_id: C-001
+  record_type: character
+  truth_status: CANON
+  lifecycle: present
+  source_ref:
+  - fixture-chapter-01#p3
+  valid_from: day-1-evening
+  depends_on: []
+  supersedes: null
+  location: 北城
+  injury: 右腕骨折
+  goal: 保护妹妹
+  knowledge:
+    I-001: unknown
+- record_id: T-001
+  record_type: timeline
+  truth_status: CANON
+  lifecycle: occurred
+  source_ref:
+  - fixture-map-01
+  - fixture-chapter-01#p1
+  valid_from: day-1
+  depends_on:
+  - C-001
+  supersedes: null
+  start: day-1 17:00
+  end: day-1 18:00
+  location: 北城
+  travel_lower_bound_minutes: 180
+- record_id: E-001
+  record_type: event
+  truth_status: PROPOSAL
+  lifecycle: planned
+  source_ref:
+  - fixture-outline-01
+  valid_from: day-2
+  depends_on:
+  - C-001
+  supersedes: null
+  goal: 取得账本
+  choice: 用唯一通行凭证交换账本
+  immediate_cost: 无法按原计划救出妹妹
+  delayed_consequence: 须重新获取出城资格
+- record_id: I-001
+  record_type: information
+  truth_status: CANON
+  lifecycle: hidden
+  source_ref:
+  - fixture-creator-02
+  valid_from: day-1
+  depends_on:
+  - W-001
+  supersedes: null
+  author_truth: 守门人曾协助林渡母亲逃出灰塔。
+  reader_evidence:
+  - 守门人听见姓氏后停了一下，但继续谈门票。
+  character_beliefs:
+    C-001: unknown
+  reveal_gate: 第六章之后且创作者确认
+- record_id: F-001
+  record_type: foreshadow
+  truth_status: PROPOSAL
+  lifecycle: planned
+  source_ref:
+  - fixture-scene-plan-01
+  valid_from: chapter-2
+  depends_on:
+  - I-001
+  supersedes: null
+  surface_function: 递回押票，推进当场买票流程
+  carrier: action
+  visible_detail: 守门人没看签名便将押票递回。
+  competing_explanations:
+  - 来客很少，记得签名
+  - 从护照抬头知道姓氏
+  salience: 1
+  test_status: not_tested

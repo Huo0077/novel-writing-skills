@@ -1,0 +1,45 @@
+changes:
+- change_id: SC-DEMO-LOCAL
+  status: proposed
+  risk: medium
+  source_ref: fixture:draft.md
+  change_type: add_fact
+  summary: 获得待验证的旧码头方向
+  before: 无当前方向
+  after: 旧码头方向，未证实
+  affected_entities:
+  - C-001
+  - E-local-investigation
+  downstream_impact:
+  - 后续须验证，不能视为已掌握入口路线
+  requires_confirmation: true
+  creator_decision: pending
+- change_id: SC-DEMO-PROMISE
+  status: proposed
+  risk: medium
+  source_ref: fixture:draft.md
+  change_type: update_state
+  summary: 作出有限查证报告承诺
+  before: 无此次承诺
+  after: 查证后在可披露范围报告
+  affected_entities:
+  - C-001
+  - C-003
+  downstream_impact:
+  - 后续应兑现或明确违反承诺
+  requires_confirmation: true
+  creator_decision: pending
+- change_id: SC-DEMO-DETAIL
+  status: proposed
+  risk: low
+  source_ref: fixture:draft.md
+  change_type: add_fact
+  summary: 门房杯下压着未交付的纸片
+  before: 未记录桌面细节
+  after: 存在纸片，但内容未知
+  affected_entities:
+  - location:gatehouse
+  downstream_impact:
+  - 不是身份线索或已获得物品
+  requires_confirmation: false
+  creator_decision: pending

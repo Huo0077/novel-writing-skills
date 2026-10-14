@@ -1,0 +1,22 @@
+audience: draft_writer
+scene_ref: SCENE-DEMO-02A
+viewpoint: C-001 limited
+allowed_facts:
+- 林渡右腕夹板固定，用左手处理物品。
+- 他与顾沉继续合作，但不完全信任。
+- 守门人可提供一个待验证的方向。
+- 当前目标是问入口信息，不是入塔。
+visible_clues: []
+forbidden_operations:
+- do_not_reveal:I-001
+- do_not_assert:gatekeeper_private_memory
+- do_not_remove:wrist_splint
+- do_not_complete:rescue
+allowed_choices:
+- 问路
+- 提供局部调查事实
+- 接受或拒绝有限报告条件
+incidental_detail_policy: 普通可逆环境动作可草稿化，需回审，不创造核心规则。
+exit_condition: 对方给出一个可核查方向，或交易失败；不能继续完成调查
+source_window:
+- fixture:scene.yaml

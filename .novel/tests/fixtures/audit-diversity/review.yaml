@@ -1,0 +1,27 @@
+review_id: REVIEW-DEMO-04
+source_ref: fixture:revised.txt
+severity: medium
+facts_observed:
+- 林渡只用左手处理纸面/收票。
+- 不能代顾沉答应，实际台词仍有限报告。
+- 顾沉没有应声并已到门外。
+- 林渡指尖接触戒圈。
+inferences:
+- 新增戒圈接触可能使读者更注意物件，但没有读者测试依据。
+state_changes:
+- entity: C-demo
+  before: 原稿未记收票触圈动作
+  after: 草稿新增触圈动作
+contradictions: []
+information_leaks: []
+narrative_function:
+  changed: 表达方式变化，交易和承诺范围保持
+  missing: 没有证明读者更满意
+foreshadowing_changes:
+- 三次意象名称保留，动作强调可能变强
+style_observations:
+- 原稿三次同一动作减少，保护意象未删
+proposal_candidates:
+- SC-DEMO-TOUCH
+creator_questions:
+- 第三处是否允许新增触戒圈动作，还是仅改语句顺序？

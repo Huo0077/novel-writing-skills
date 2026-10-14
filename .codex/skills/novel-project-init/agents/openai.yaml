@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说项目初始化"
+  short_description: "分阶段询问创作目标与已知设定，建立或恢复可追溯的小说状态档案"
+  default_prompt: "请使用 $novel-project-init 处理当前小说项目，并保留正史与未确认内容的区别。"

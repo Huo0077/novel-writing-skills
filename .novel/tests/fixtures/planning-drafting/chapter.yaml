@@ -1,0 +1,33 @@
+plan_id: CHAPTER-DEMO-02
+plan_type: chapter
+plan_status: approved
+source_ref:
+- fixture:test-author-decisions
+revision: 1
+approval_ref: fixture:approval-for-this-example-only
+based_on:
+- OUTLINE-DEMO-01
+entry_state: {}
+target_delta:
+- new_local_lead
+- cooperation_without_reconciliation
+reveal_budget:
+  allowed: []
+  forbidden_operations:
+  - do_not_reveal:I-001
+exit_condition: 获得一个有限方向并保留未知
+handoff:
+  status: ready
+  next_skill: novel-scene-plan
+  artifact_refs: []
+chapter_function: 推进局部调查并展示合作边界
+scene_ids:
+- SCENE-DEMO-02A
+scene_dependencies: []
+reader_question: 守门人要求什么条件？
+tension_curve:
+- 谨慎接触
+- 交易压力
+- 有限结果
+- 结果消化
+aftermath: 得到的是待验证线索，不是胜利

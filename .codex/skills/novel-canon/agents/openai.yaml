@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说正史管理"
+  short_description: "区分正史、暂定事实与提案，分级确认变更并保留创作者决定及来源"
+  default_prompt: "请使用 $novel-canon 处理当前小说项目，并保留正史与未确认内容的区别。"

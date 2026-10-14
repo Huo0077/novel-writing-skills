@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说世界规则"
+  short_description: "维护世界规则、适用条件、限制与代价，并发现临时突破设定的矛盾"
+  default_prompt: "请使用 $novel-world 处理当前小说任务，并把未确认事实保留为提案。"

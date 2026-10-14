@@ -1,0 +1,11 @@
+change_id: SC-ACCEPT-001
+status: proposed
+risk: medium
+source_ref: chapter-01/scene-01
+change_type: update_state
+summary: "林渡开始怀疑守门人与母亲有关"
+affected_entities:
+  - character:lin-du
+  - character:gatekeeper
+requires_confirmation: true
+creator_decision: pending

@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说表达多样化"
+  short_description: "按语境生成词句、动作和叙述角度候选，保持含义与角色声音并标记新增事实"
+  default_prompt: "请使用 $novel-expression-diversify 处理当前小说文段，并保留语义、保护意图和状态确认边界。"

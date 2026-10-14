@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说信息边界"
+  short_description: "区分作者真相、角色认知与读者证据，生成不泄露答案的当前场景信息包"
+  default_prompt: "请使用 $novel-information 处理当前小说任务，并把未确认事实保留为提案。"

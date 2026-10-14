@@ -1,0 +1,29 @@
+audit_id: AUDIT-DEMO-04
+scope:
+  source_ref: fixture:original.txt
+  window: 当前样例
+coverage:
+  read_sources:
+  - fixture:original.txt
+  - fixture:config.json
+  not_read:
+  - 未来chapters/05
+  unresolved_sources: []
+motif:
+  value: 银戒指
+  repetition_class: effective
+  protection_decision: keep
+  reason: 创作者测试设定指定三次回环，保留名称与三处位置。
+findings:
+- value: 微微一怔
+  repetition_class: ineffective
+  protection_decision: revise
+  reason: 三段沿用同一动作标签，可部分保留并改句群表达；并非所有停顿都要替换。
+- value: 不是…而是
+  repetition_class: suspicious
+  protection_decision: revise
+  reason: 连续同型解释打断交易推进；保留否定/肯定内容，不硬换近义词。
+- value: ellipsis
+  repetition_class: suspicious
+  protection_decision: clarify
+  reason: 首次迟疑对白可保留；末段情绪是否需要拖延取决于作者。

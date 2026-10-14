@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说合理误导"
+  short_description: "为可见证据建立有依据的竞争解释和破除路径，避免叙述者撒假话或无端欺骗读者"
+  default_prompt: "请使用 $novel-misdirection 处理当前小说任务，并区分作者真相、读者证据与实际测试状态。"

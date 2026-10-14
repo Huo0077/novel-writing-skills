@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说角色声音"
+  short_description: "用注意焦点、措辞策略和压力反应区分人物对白，保持知识边界并避免口头禅模板化"
+  default_prompt: "请使用 $novel-character-voice 处理当前小说任务，并遵守批准范围、信息边界和状态确认。"

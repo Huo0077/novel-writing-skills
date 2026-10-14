@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说场景规划"
+  short_description: "根据人物入口状态设计目标、阻力、选择和退出条件，生成有限且不泄密的写作任务"
+  default_prompt: "请使用 $novel-scene-plan 处理当前小说任务，并遵守批准范围、信息边界和状态确认。"

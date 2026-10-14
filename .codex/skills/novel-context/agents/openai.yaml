@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说上下文装配"
+  short_description: "按当前任务装配最小必要资料，并区分作者分析与正文公开信息权限"
+  default_prompt: "请使用 $novel-context 处理当前小说项目，并保留正史与未确认内容的区别。"

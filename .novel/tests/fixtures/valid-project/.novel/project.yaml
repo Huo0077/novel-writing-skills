@@ -1,0 +1,9 @@
+﻿project_id: sample-novel
+schema_version: "1.0"
+title: "示例小说"
+mode: author_assistant
+genre: fantasy
+current:
+  volume: 1
+  chapter: 1
+  scene: 1

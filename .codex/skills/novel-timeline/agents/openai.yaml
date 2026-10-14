@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说时间线"
+  short_description: "校验时间先后、地点转换和并行事件，区分已知冲突与尚缺的时间依据"
+  default_prompt: "请使用 $novel-timeline 处理当前小说任务，并把未确认事实保留为提案。"

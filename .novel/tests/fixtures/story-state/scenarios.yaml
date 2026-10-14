@@ -1,0 +1,19 @@
+scenarios:
+- skill: novel-world
+  request: 检查入塔段落是否违背规则，提出不改变正史的修复。
+  raw_material: 档案 W-001：无月痕者不得独自入塔，尚无例外。正文：没有月痕的林渡独自推门走进灰塔。
+- skill: novel-character
+  request: 核查动作、心理与前一场景状态是否衔接。
+  raw_material: 前场景：林渡右腕骨折并用夹板固定；仍依赖顾沉，但开始怀疑他。当前正文：林渡用右手提剑，毫不犹豫把全部计划告诉顾沉。
+- skill: novel-timeline
+  request: 核查两处出场是否可同时成立。
+  raw_material: 林渡同日17:00-18:00在北城开会，18:30在南港登记；地图记载最快行程3小时；未设传送能力。
+- skill: novel-plot
+  request: 完善事件因果，不替作者决定新主线。
+  raw_material: 主角首要目标是救妹妹。草案：随手从账房拿走账本，侍卫未阻拦，也没有后续影响；随后侦破案件。
+- skill: novel-information
+  request: 为限知场景制作公开信息包。
+  raw_material: 作者知道：守门人曾协助林渡母亲逃出灰塔。读者只见停顿，林渡不知道母亲去过灰塔。正文：林渡明白守门人当年保护过母亲，因此立刻相信他。
+- skill: novel-foreshadow-craft
+  request: 将明显伏笔改成有当前用途的细节。
+  raw_material: 当前场景买门票。原文：守门人意味深长地凝视那枚戒指，这枚普通戒指却藏着惊天秘密。作者只确认戒指将作身份线索，未决定具体持有人。

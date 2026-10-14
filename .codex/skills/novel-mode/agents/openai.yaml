@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说创作模式"
+  short_description: "切换作者助手、协同作者或半自动长篇模式，同时保留分级确认边界"
+  default_prompt: "请使用 $novel-mode 处理当前小说项目，并保留正史与未确认内容的区别。"

@@ -1,0 +1,33 @@
+change_ref: ALT-DEMO-3
+change_type: action_and_salience_candidate
+before: 收票但无明确碰戒圈动作
+after: 收票时指尖接触戒圈
+coverage:
+  read_sources:
+  - fixture:original.txt
+  - fixture:revised.txt
+  - fixture:review.yaml
+  not_read:
+  - chapters/05
+  - canon/foreshadowing/F-silver-ring.md
+  unresolved_sources:
+  - 当前真实伏笔卡未建立，无法断言显眼度影响
+downstream_impact:
+- entity_ref: F-silver-ring
+  dependency_path:
+  - new_touch_action
+  - reader_attention
+  - future_identity_clue
+  evidence: 当前新稿写了指尖擦过戒圈
+  certainty: possible
+  required_action: 读取真实伏笔卡后核对当前窗口是否应强调
+- entity_ref: later-possession-history
+  dependency_path:
+  - new_touch_action
+  - character_hand_action
+  - later_claims_about_touching_ring
+  evidence: 未来若有从未触碰声明会受影响；尚未读取
+  certainty: unknown
+  required_action: 检查对应后文，不凭假设判矛盾
+whole_novel_verified: false
+creator_decision: pending

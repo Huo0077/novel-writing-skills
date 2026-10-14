@@ -1,0 +1,30 @@
+checkpoint_id: CP-DEMO-02A
+created_from: fixture:draft.md
+mode: author_assistant
+confirmed_canon:
+- wrist_splinted
+- identity_secret_unrevealed
+- distrust_active
+tentative_changes:
+- SC-DEMO-DETAIL
+pending_proposals:
+- SC-DEMO-LOCAL
+- SC-DEMO-PROMISE
+current_progress:
+  location: 调查阶段/交易场景结束
+  completed:
+  - 草稿
+  - 回审
+  - 状态候选
+  next_safe_action: 先确认当前分支，再设计查证场景
+  must_not_reveal:
+  - I-001
+  unresolved_questions:
+  - 旧码头方向是否可信？
+recovery_context:
+  include:
+  - fixture:scene.yaml
+  - fixture:review.yaml
+  exclude:
+  - fixture:outline.yaml#author_notes
+next_action_status: creator_pending

@@ -1,0 +1,241 @@
+{
+  "version": "1.0",
+  "skills": [
+    {
+      "name": "novel-canon",
+      "role": "正史"
+    },
+    {
+      "name": "novel-causality-audit",
+      "role": "因果审查"
+    },
+    {
+      "name": "novel-chapter-plan",
+      "role": "章计划"
+    },
+    {
+      "name": "novel-character",
+      "role": "人物状态"
+    },
+    {
+      "name": "novel-character-voice",
+      "role": "声音"
+    },
+    {
+      "name": "novel-checkpoint",
+      "role": "恢复"
+    },
+    {
+      "name": "novel-clue-distribution",
+      "role": "分布"
+    },
+    {
+      "name": "novel-context",
+      "role": "上下文"
+    },
+    {
+      "name": "novel-continuity-audit",
+      "role": "连续性审查"
+    },
+    {
+      "name": "novel-draft",
+      "role": "正文"
+    },
+    {
+      "name": "novel-expression-diversify",
+      "role": "表达候选"
+    },
+    {
+      "name": "novel-foreshadow-craft",
+      "role": "自然线索"
+    },
+    {
+      "name": "novel-impact-review",
+      "role": "后文影响"
+    },
+    {
+      "name": "novel-information",
+      "role": "信息权限"
+    },
+    {
+      "name": "novel-misdirection",
+      "role": "误导"
+    },
+    {
+      "name": "novel-mode",
+      "role": "模式"
+    },
+    {
+      "name": "novel-outline",
+      "role": "总纲"
+    },
+    {
+      "name": "novel-pacing-audit",
+      "role": "节奏"
+    },
+    {
+      "name": "novel-payoff-audit",
+      "role": "回收"
+    },
+    {
+      "name": "novel-plot",
+      "role": "因果与进度"
+    },
+    {
+      "name": "novel-project-init",
+      "role": "初始化"
+    },
+    {
+      "name": "novel-reader-hypothesis-test",
+      "role": "首次阅读"
+    },
+    {
+      "name": "novel-reveal-calibration",
+      "role": "揭示"
+    },
+    {
+      "name": "novel-router",
+      "role": "总控"
+    },
+    {
+      "name": "novel-scene-plan",
+      "role": "场景"
+    },
+    {
+      "name": "novel-secret-design",
+      "role": "真相"
+    },
+    {
+      "name": "novel-segment-review",
+      "role": "正文反向回审"
+    },
+    {
+      "name": "novel-style-audit",
+      "role": "表达审查"
+    },
+    {
+      "name": "novel-style-revise",
+      "role": "风格修订"
+    },
+    {
+      "name": "novel-timeline",
+      "role": "时间线"
+    },
+    {
+      "name": "novel-world",
+      "role": "世界规则"
+    }
+  ],
+  "routes": [
+    {
+      "intent": "新项目",
+      "chain": [
+        "novel-project-init",
+        "novel-mode",
+        "novel-checkpoint"
+      ]
+    },
+    {
+      "intent": "恢复进度",
+      "chain": [
+        "novel-context",
+        "novel-checkpoint"
+      ]
+    },
+    {
+      "intent": "总纲",
+      "chain": [
+        "novel-context",
+        "novel-outline"
+      ]
+    },
+    {
+      "intent": "写下一场",
+      "chain": [
+        "novel-context",
+        "novel-scene-plan",
+        "novel-draft",
+        "novel-segment-review",
+        "novel-canon",
+        "novel-checkpoint"
+      ]
+    },
+    {
+      "intent": "正文回审",
+      "chain": [
+        "novel-context",
+        "novel-segment-review",
+        "novel-continuity-audit",
+        "novel-causality-audit"
+      ]
+    },
+    {
+      "intent": "表达重复",
+      "chain": [
+        "novel-style-audit",
+        "novel-expression-diversify",
+        "novel-style-revise",
+        "novel-impact-review",
+        "novel-canon"
+      ]
+    },
+    {
+      "intent": "对白趋同",
+      "chain": [
+        "novel-character-voice",
+        "novel-segment-review"
+      ]
+    },
+    {
+      "intent": "伏笔明显",
+      "chain": [
+        "novel-foreshadow-craft",
+        "novel-misdirection",
+        "novel-reveal-calibration"
+      ]
+    },
+    {
+      "intent": "新谜团",
+      "chain": [
+        "novel-secret-design",
+        "novel-foreshadow-craft",
+        "novel-clue-distribution"
+      ]
+    },
+    {
+      "intent": "节奏不对",
+      "chain": [
+        "novel-pacing-audit",
+        "novel-reveal-calibration"
+      ]
+    },
+    {
+      "intent": "揭示回收",
+      "chain": [
+        "novel-payoff-audit",
+        "novel-impact-review",
+        "novel-canon"
+      ]
+    },
+    {
+      "intent": "reader首次阅读",
+      "chain": [
+        "novel-reader-hypothesis-test"
+      ]
+    },
+    {
+      "intent": "改关键事实",
+      "chain": [
+        "novel-impact-review",
+        "novel-canon",
+        "novel-checkpoint"
+      ]
+    },
+    {
+      "intent": "项目验收迁移",
+      "chain": [
+        "novel-router"
+      ]
+    }
+  ]
+}

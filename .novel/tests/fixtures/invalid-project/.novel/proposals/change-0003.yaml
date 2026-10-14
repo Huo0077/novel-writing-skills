@@ -1,0 +1,8 @@
+﻿change_id: SC-0003
+status: unknown_state
+risk: high
+change_type: reveal
+summary: "缺少来源的高风险提案"
+affected_entities: []
+requires_confirmation: false
+creator_decision: pending

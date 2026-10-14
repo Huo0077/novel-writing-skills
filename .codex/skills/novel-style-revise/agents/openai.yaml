@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说风格修订"
+  short_description: "在获准范围应用语境改写，保护意象和语义，另存草稿并回审新增事实与影响"
+  default_prompt: "请使用 $novel-style-revise 处理当前小说文段，并保留语义、保护意图和状态确认边界。"

@@ -1,0 +1,4 @@
+# 回收表
+secret_ref、evaluation_mode、coverage、pre_reveal_evidence、reveal_source、retrospective_changes、unexplained_details、newly_invented_evidence、payoff_outcome。
+依据链要含实际段落引用，至少指出事实解释发生何种变化；不是所有物件都强行有秘密。
+角色代价与主题后果需具体来源或候选状态。揭示后立刻另起更大谜团不一定好，可能挤掉情绪消化。

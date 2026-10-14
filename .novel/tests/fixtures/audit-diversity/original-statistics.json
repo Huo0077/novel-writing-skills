@@ -1,0 +1,443 @@
+{
+  "schema_version": "1.0",
+  "source_scope": "supplied_text_only",
+  "metrics": {
+    "characters": 188,
+    "han_characters": 149,
+    "rough_sentence_count": 11,
+    "rough_sentence_lengths": [
+      11,
+      19,
+      24,
+      16,
+      13,
+      16,
+      17,
+      7,
+      10,
+      26,
+      20
+    ]
+  },
+  "settings": {
+    "terms": [
+      "微微一怔",
+      "银戒指"
+    ],
+    "protected": [
+      {
+        "value": "银戒指",
+        "reason": "测试创作者指定的三次意象回环"
+      }
+    ],
+    "min_count": 2,
+    "ngram_size": 4,
+    "max_candidates": 20
+  },
+  "findings": [
+    {
+      "kind": "term",
+      "value": "微微一怔",
+      "count": 3,
+      "protected_count": 0,
+      "occurrences": [
+        {
+          "offset": 31,
+          "end_offset": 35,
+          "line": 1,
+          "column": 32,
+          "surface": "微微一怔",
+          "protection_reasons": []
+        },
+        {
+          "offset": 82,
+          "end_offset": 86,
+          "line": 5,
+          "column": 9,
+          "surface": "微微一怔",
+          "protection_reasons": []
+        },
+        {
+          "offset": 143,
+          "end_offset": 147,
+          "line": 9,
+          "column": 13,
+          "surface": "微微一怔",
+          "protection_reasons": []
+        }
+      ],
+      "judgment": "needs_context_review"
+    },
+    {
+      "kind": "term",
+      "value": "银戒指",
+      "count": 3,
+      "protected_count": 3,
+      "occurrences": [
+        {
+          "offset": 0,
+          "end_offset": 3,
+          "line": 1,
+          "column": 1,
+          "surface": "银戒指",
+          "protection_reasons": [
+            "测试创作者指定的三次意象回环"
+          ]
+        },
+        {
+          "offset": 78,
+          "end_offset": 81,
+          "line": 5,
+          "column": 5,
+          "surface": "银戒指",
+          "protection_reasons": [
+            "测试创作者指定的三次意象回环"
+          ]
+        },
+        {
+          "offset": 131,
+          "end_offset": 134,
+          "line": 9,
+          "column": 1,
+          "surface": "银戒指",
+          "protection_reasons": [
+            "测试创作者指定的三次意象回环"
+          ]
+        }
+      ],
+      "judgment": "needs_context_review"
+    },
+    {
+      "kind": "pattern",
+      "value": "不是…而是",
+      "count": 3,
+      "protected_count": 0,
+      "occurrences": [
+        {
+          "offset": 36,
+          "end_offset": 43,
+          "line": 1,
+          "column": 37,
+          "surface": "不是惊慌，而是",
+          "protection_reasons": []
+        },
+        {
+          "offset": 87,
+          "end_offset": 94,
+          "line": 5,
+          "column": 14,
+          "surface": "不是不肯，而是",
+          "protection_reasons": []
+        },
+        {
+          "offset": 148,
+          "end_offset": 157,
+          "line": 9,
+          "column": 18,
+          "surface": "不是因为沉默，而是",
+          "protection_reasons": []
+        }
+      ],
+      "judgment": "needs_context_review"
+    },
+    {
+      "kind": "punctuation",
+      "value": "ellipsis",
+      "count": 3,
+      "protected_count": 0,
+      "occurrences": [
+        {
+          "offset": 64,
+          "end_offset": 66,
+          "line": 3,
+          "column": 9,
+          "surface": "……",
+          "protection_reasons": []
+        },
+        {
+          "offset": 117,
+          "end_offset": 119,
+          "line": 5,
+          "column": 44,
+          "surface": "……",
+          "protection_reasons": []
+        },
+        {
+          "offset": 185,
+          "end_offset": 187,
+          "line": 9,
+          "column": 55,
+          "surface": "……",
+          "protection_reasons": []
+        }
+      ],
+      "judgment": "needs_context_review"
+    },
+    {
+      "kind": "punctuation",
+      "value": "。",
+      "count": 9,
+      "protected_count": 0,
+      "occurrences": [
+        {
+          "offset": 10,
+          "end_offset": 11,
+          "line": 1,
+          "column": 11,
+          "surface": "。",
+          "protection_reasons": []
+        },
+        {
+          "offset": 29,
+          "end_offset": 30,
+          "line": 1,
+          "column": 30,
+          "surface": "。",
+          "protection_reasons": []
+        },
+        {
+          "offset": 53,
+          "end_offset": 54,
+          "line": 1,
+          "column": 54,
+          "surface": "。",
+          "protection_reasons": []
+        },
+        {
+          "offset": 71,
+          "end_offset": 72,
+          "line": 3,
+          "column": 16,
+          "surface": "。",
+          "protection_reasons": []
+        },
+        {
+          "offset": 86,
+          "end_offset": 87,
+          "line": 5,
+          "column": 13,
+          "surface": "。",
+          "protection_reasons": []
+        },
+        {
+          "offset": 102,
+          "end_offset": 103,
+          "line": 5,
+          "column": 29,
+          "surface": "。",
+          "protection_reasons": []
+        },
+        {
+          "offset": 128,
+          "end_offset": 129,
+          "line": 7,
+          "column": 7,
+          "surface": "。",
+          "protection_reasons": []
+        },
+        {
+          "offset": 140,
+          "end_offset": 141,
+          "line": 9,
+          "column": 10,
+          "surface": "。",
+          "protection_reasons": []
+        },
+        {
+          "offset": 166,
+          "end_offset": 167,
+          "line": 9,
+          "column": 36,
+          "surface": "。",
+          "protection_reasons": []
+        }
+      ],
+      "judgment": "needs_context_review"
+    },
+    {
+      "kind": "punctuation",
+      "value": "，",
+      "count": 10,
+      "protected_count": 0,
+      "occurrences": [
+        {
+          "offset": 20,
+          "end_offset": 21,
+          "line": 1,
+          "column": 21,
+          "surface": "，",
+          "protection_reasons": []
+        },
+        {
+          "offset": 35,
+          "end_offset": 36,
+          "line": 1,
+          "column": 36,
+          "surface": "，",
+          "protection_reasons": []
+        },
+        {
+          "offset": 40,
+          "end_offset": 41,
+          "line": 1,
+          "column": 41,
+          "surface": "，",
+          "protection_reasons": []
+        },
+        {
+          "offset": 60,
+          "end_offset": 61,
+          "line": 3,
+          "column": 5,
+          "surface": "，",
+          "protection_reasons": []
+        },
+        {
+          "offset": 81,
+          "end_offset": 82,
+          "line": 5,
+          "column": 8,
+          "surface": "，",
+          "protection_reasons": []
+        },
+        {
+          "offset": 91,
+          "end_offset": 92,
+          "line": 5,
+          "column": 18,
+          "surface": "，",
+          "protection_reasons": []
+        },
+        {
+          "offset": 114,
+          "end_offset": 115,
+          "line": 5,
+          "column": 41,
+          "surface": "，",
+          "protection_reasons": []
+        },
+        {
+          "offset": 147,
+          "end_offset": 148,
+          "line": 9,
+          "column": 17,
+          "surface": "，",
+          "protection_reasons": []
+        },
+        {
+          "offset": 154,
+          "end_offset": 155,
+          "line": 9,
+          "column": 24,
+          "surface": "，",
+          "protection_reasons": []
+        },
+        {
+          "offset": 172,
+          "end_offset": 173,
+          "line": 9,
+          "column": 42,
+          "surface": "，",
+          "protection_reasons": []
+        }
+      ],
+      "judgment": "needs_context_review"
+    },
+    {
+      "kind": "han_fragment",
+      "value": "微微一怔",
+      "count": 3,
+      "protected_count": 0,
+      "occurrences": [
+        {
+          "offset": 31,
+          "end_offset": 35,
+          "line": 1,
+          "column": 32,
+          "surface": "微微一怔",
+          "protection_reasons": []
+        },
+        {
+          "offset": 82,
+          "end_offset": 86,
+          "line": 5,
+          "column": 9,
+          "surface": "微微一怔",
+          "protection_reasons": []
+        },
+        {
+          "offset": 143,
+          "end_offset": 147,
+          "line": 9,
+          "column": 13,
+          "surface": "微微一怔",
+          "protection_reasons": []
+        }
+      ],
+      "judgment": "needs_context_review"
+    },
+    {
+      "kind": "han_fragment",
+      "value": "压在押票",
+      "count": 2,
+      "protected_count": 0,
+      "occurrences": [
+        {
+          "offset": 3,
+          "end_offset": 7,
+          "line": 1,
+          "column": 4,
+          "surface": "压在押票",
+          "protection_reasons": []
+        },
+        {
+          "offset": 135,
+          "end_offset": 139,
+          "line": 9,
+          "column": 5,
+          "surface": "压在押票",
+          "protection_reasons": []
+        }
+      ],
+      "judgment": "needs_context_review"
+    },
+    {
+      "kind": "sentence_opening",
+      "value": "银戒指",
+      "count": 2,
+      "protected_count": 2,
+      "occurrences": [
+        {
+          "offset": 0,
+          "end_offset": 3,
+          "line": 1,
+          "column": 1,
+          "surface": "银戒指",
+          "protection_reasons": [
+            "测试创作者指定的三次意象回环"
+          ]
+        },
+        {
+          "offset": 131,
+          "end_offset": 134,
+          "line": 9,
+          "column": 1,
+          "surface": "银戒指",
+          "protection_reasons": [
+            "测试创作者指定的三次意象回环"
+          ]
+        }
+      ],
+      "judgment": "needs_context_review"
+    }
+  ],
+  "limitations": [
+    "not_word_segmentation",
+    "not_ai_detection",
+    "not_semantic_audit",
+    "protection_is_annotation_not_permission",
+    "overlapping_matches_counted",
+    "no_automatic_rewrite"
+  ],
+  "source_ref": "D:\\小说\\.novel\\tests\\fixtures\\audit-diversity\\original.txt"
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说人物状态"
+  short_description: "维护人物目标、伤势、关系、知识和选择，防止性格漂移及状态回滚"
+  default_prompt: "请使用 $novel-character 处理当前小说任务，并把未确认事实保留为提案。"

@@ -1,0 +1,30 @@
+plan_id: OUTLINE-DEMO-01
+plan_type: outline
+plan_status: approved
+source_ref:
+- fixture:test-author-decisions
+revision: 1
+approval_ref: fixture:approval-for-this-example-only
+based_on: []
+entry_state: {}
+target_delta:
+- progress_toward_rescue_without_full_secret
+reveal_budget:
+  allowed: []
+  forbidden_operations:
+  - do_not_reveal:I-001
+exit_condition: 本阶段取得并验证一条局部通路，不完成救人和身世揭示
+handoff:
+  status: ready
+  next_skill: novel-chapter-plan
+  artifact_refs: []
+premise: 带伤的林渡寻找救妹妹的通路，同时维持必要而不安的合作。
+theme_question: 急迫的目标使人愿意承担多少信任风险？
+planning_horizon: 当前调查阶段
+author_notes:
+  I-001: 守门人曾协助林渡母亲逃出灰塔。
+stage_questions:
+- 取得可验证的入口信息
+- 验证信息并处理交换代价
+open_questions:
+- 结局 unknown

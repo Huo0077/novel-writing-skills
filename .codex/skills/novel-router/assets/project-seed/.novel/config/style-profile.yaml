@@ -1,0 +1,7 @@
+schema_version: '1.0'
+viewpoint: unspecified
+narrative_distance: unspecified
+tone: unspecified
+protected_repetitions: []
+forbidden_phrases: []
+preferred_transitions: []

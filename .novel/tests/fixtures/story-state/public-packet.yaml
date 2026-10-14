@@ -1,0 +1,12 @@
+audience: draft_writer
+viewpoint: C-001 limited
+allowed_facts:
+- 林渡知道守门人看过自己的押票。
+- 守门人要求一枚旧币作门票。
+forbidden_operations:
+- do_not_reveal:I-001
+- do_not_assert:gatekeeper_private_memory
+unresolved_questions:
+- 守门人为何记得来客姓氏？
+source_window:
+- chapter-2#ticket-scene

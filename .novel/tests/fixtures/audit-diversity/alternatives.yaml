@@ -1,0 +1,38 @@
+alternatives:
+- candidate_id: ALT-DEMO-1
+  original_ref: fixture:original.txt#p1
+  operation: 句式删改
+  meaning_constraints:
+  - 仍是短暂意外，非恐惧
+  - 仍未料到要谈条件
+  - 保留第一次微微一怔
+  replacement: 他微微一怔，没料到对方还要谈条件，倒不至于惊慌。
+  new_facts: []
+  risk: low
+  creator_decision: fixture:allowed-for-draft-only
+- candidate_id: ALT-DEMO-2
+  original_ref: fixture:original.txt#p3
+  operation: 句群重组
+  meaning_constraints:
+  - 不是拒绝交易
+  - 不能替顾沉作承诺
+  - 知道的信息没有增加
+  - 保护银戒指名称
+  replacement: 林渡看着银戒指。这条件来得突然；自己的事他可以应下，却不能替顾沉答应。
+  new_facts: []
+  risk: low
+  creator_decision: fixture:allowed-for-draft-only
+- candidate_id: ALT-DEMO-3
+  original_ref: fixture:original.txt#p5
+  operation: 叙述次序和动作候选
+  meaning_constraints:
+  - 顾沉已在门外
+  - 林渡收起押票
+  - 未问出口的话仍未说出
+  - 不揭身份答案
+  - 保持左手动作与银戒指指代
+  replacement: 林渡这才留意到顾沉已经退到了门外。左手收票时，他的指尖擦过戒圈。那句没问出口的话，也跟着收了回去。
+  new_facts:
+  - 林渡左手收票时指尖接触戒圈；可能强化物件显眼度
+  risk: medium
+  creator_decision: pending

@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说伏笔回收审查"
+  short_description: "以揭示前证据对照真相，检查重解释、情感和行动后果，区分公平回收与临时补造依据"
+  default_prompt: "请使用 $novel-payoff-audit 处理当前小说任务，并区分作者真相、读者证据与实际测试状态。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说因果审查"
+  short_description: "检查目标、选择、阻力和延迟后果，定位无依据解法而不把安静场景一律删除"
+  default_prompt: "请使用 $novel-causality-audit 处理当前小说文段，并保留语义、保护意图和状态确认边界。"

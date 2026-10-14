@@ -1,0 +1,26 @@
+scope: 三段调查选段
+coverage:
+  read_sources:
+  - fixture:P1.txt
+  - fixture:P2.txt
+  - fixture:P3.txt
+  not_read:
+  - 选段间全文
+  - 完整章节结尾
+  - 回收后余波
+scene_functions:
+- 取得可用押票
+- 检索受阻、局部问题升级
+- 了解规则并改变下一步调查
+information_load: P3出现注销/两联/经手人三条规则，短篇范围可能集中，需结合全文检查
+conflict_layers:
+  surface: 能否查到登记
+  persistent: 资料权限和交易条件
+  deep: 谁改动记录、保护谁；不在当前解释
+aftermath_required:
+- 完整真相后应让人物处理关系/证据代价，而非立即换更大谜团
+fixed_twist_every_chapter: false
+fix_candidates:
+- 保留窗口处置规则，把回执两联细节分散到实际行动验证
+- 不强行在P1解释守门人背景
+evaluation_mode: manual_rehearsal

@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说表达审查"
+  short_description: "结合词组、句式、标点和片段统计判读重复，保护主题意象与角色有意回环"
+  default_prompt: "请使用 $novel-style-audit 处理当前小说文段，并保留语义、保护意图和状态确认边界。"

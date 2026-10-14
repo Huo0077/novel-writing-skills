@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说修订影响"
+  short_description: "追踪改动对人物、时间、伏笔和后续章节的依赖，列已读覆盖与未知项再决定同步范围"
+  default_prompt: "请使用 $novel-impact-review 处理当前小说文段，并保留语义、保护意图和状态确认边界。"

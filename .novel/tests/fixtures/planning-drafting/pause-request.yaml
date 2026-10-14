@@ -1,0 +1,12 @@
+request_id: REQ-DEMO-EARLY-REVEAL
+source_ref: fixture:request-to-reveal-now
+risk: high
+handoff_status: paused
+requires_confirmation: true
+draft_ref: null
+creator_decision: pending
+affected_information:
+- I-001
+reason: 本场批准范围仅局部方向，没有当前时点完整身份揭示许可。
+creator_question: 是否明确批准本场提前完整揭示 I-001，并接受对后续线索和角色关系的影响？
+next_safe_action: 可保留观察和猜测，不确认答案。

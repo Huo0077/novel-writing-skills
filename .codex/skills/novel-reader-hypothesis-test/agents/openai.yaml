@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说读者猜测测试"
+  short_description: "准备仅含已见正文的阅读材料，记录独立条件和原始响应，区分人工审查与真正首次阅读"
+  default_prompt: "请使用 $novel-reader-hypothesis-test 处理当前小说任务，并区分作者真相、读者证据与实际测试状态。"

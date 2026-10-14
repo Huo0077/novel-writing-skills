@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说连续性审查"
+  short_description: "依据来源核查人物、物品、时间和知识边界，区分真实矛盾、未知与刻意误导"
+  default_prompt: "请使用 $novel-continuity-audit 处理当前小说文段，并保留语义、保护意图和状态确认边界。"

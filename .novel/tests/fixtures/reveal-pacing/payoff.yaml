@@ -1,0 +1,29 @@
+evaluation_mode: manual_rehearsal
+secret_ref: I-DEMO-CANCEL
+coverage:
+  read_sources:
+  - fixture:P1.txt
+  - fixture:P2.txt
+  - fixture:P3.txt
+  - fixture:secret.yaml
+  not_read:
+  - 完整回收正文
+  - 后章人物代价
+pre_reveal_evidence:
+- P1看证件挑旧号
+- P2资料注销需回执
+- P3经手人留一联
+reveal_source: fixture:secret.yaml为设计候选，未有实际回收正文
+retrospective_changes:
+- 挑票可能不是例行发票，而与特定登记记录有关。
+- 窗口指门房可能不只是推诿，而指向可追踪经手记录。
+fairness_gaps:
+- 参与者真实身份仍缺实际签名/回执证据。
+- 保护对象与受害者未确定，不能说前文已充分支持完整动机。
+newly_invented_evidence: []
+payoff_outcome:
+  relation: 候选：林渡将交换信息与信任分开，并追问回执来源
+  character_cost: 候选：继续合作要承担验证记录的时间/关系代价，尚未实际写出
+  action: 候选：先找到可核查经手者，不立即定罪
+whole_novel_verified: false
+creator_decision: pending

@@ -1,0 +1,20 @@
+local_reveal:
+  stage: partial
+  visible_basis:
+  - P2
+  - P3
+  reveal_gate:
+  - 贴纸意味着资料被注销，当前必须转找回执
+  risk: medium
+  creator_decision: pending
+core_reveal:
+  stage: full
+  reveal_gate:
+  - 经手者与回执来源核实
+  - 保护/损害对象及代价有前置依据
+  - 获得当前时点具体揭示批准
+  risk: high
+  creator_decision: pending
+  approval_ref: null
+salience_assessment: manual_editor_judgment_not_probability
+reader_response_available: false

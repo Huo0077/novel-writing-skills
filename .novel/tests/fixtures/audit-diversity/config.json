@@ -1,0 +1,15 @@
+{
+  "terms": [
+    "微微一怔",
+    "银戒指"
+  ],
+  "protected": [
+    {
+      "value": "银戒指",
+      "reason": "测试创作者指定的三次意象回环"
+    }
+  ],
+  "min_count": 2,
+  "ngram_size": 4,
+  "max_candidates": 20
+}

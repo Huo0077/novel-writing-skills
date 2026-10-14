@@ -1,0 +1,48 @@
+plan_id: SCENE-DEMO-02A
+plan_type: scene
+plan_status: approved
+source_ref:
+- fixture:test-author-decisions
+revision: 1
+approval_ref: fixture:approval-for-this-example-only
+based_on:
+- CHAPTER-DEMO-02
+- C-001
+- C-002
+- I-001
+entry_state:
+  right_wrist: splinted
+  distrust_active: true
+  location: 北城门房
+  knowledge_I_001: unknown
+target_delta:
+- entrance_route_verified
+- cooperation_without_reconciliation
+reveal_budget:
+  allowed:
+  - a_local_direction_not_verified
+  - a_limited_reporting_condition
+  forbidden_operations:
+  - do_not_reveal:I-001
+exit_condition: 对方给出一个可核查方向，或交易失败；不能继续完成调查
+handoff:
+  status: ready
+  next_skill: novel-draft
+  artifact_refs:
+  - fixture:public-packet.yaml
+viewpoint: C-001 limited
+location: 北城门房
+time_window: day-2 noon
+participants:
+- C-001
+- C-002
+- C-003
+goal: 换到入口信息
+obstacle: 守门人只给有限方向并要求查证后报告
+choices:
+- 提供局部调查事实
+- 放弃交易
+cost: 候选承诺：先查证再报告结果
+public_packet_ref: fixture:public-packet.yaml
+voice_refs:
+- fixture:voice-profiles.yaml
