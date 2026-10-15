@@ -1,6 +1,6 @@
 # Novel Writing Skills
 
-[简体中文](README.md) | **English**
+[简体中文](README.md) | **English** · [License: MIT](LICENSE)
 
 ![Novel Writing Skills — Keep your story together. AI-assisted fiction with author-controlled decisions.](docs/assets/novel-writing-skills-cover.png)
 
@@ -231,6 +231,14 @@ These checks verify file structures, tools, and handoffs—not independent model
 - Global installation, automatic UI discovery, and autonomous multi-agent writing are not guaranteed.
 
 See the [verification report (Chinese)](docs/novel-skills/GitHub-v1.1-复核报告.md) and [machine-readable summary](docs/novel-skills/verification/v1.1-public-verification.json). Historical v1.0 remains available in Releases, but has known validation defects; use v1.1.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE). You may use, modify, distribute, or commercially use the project files subject to its terms. Include the copyright and permission notice when distributing copies or substantial portions of the project. The project is provided without warranty as stated in the license.
+
+The license covers project files supplied by the project author, including code, skill instructions, protocols, and templates. **It does not require you to publish your own novels, drafts, settings, or writing outputs under MIT**, nor does it grant the project author rights to those works. Third-party materials remain subject to their applicable terms; this license alone does not guarantee ownership of AI-generated content.
+
+Historical v1.0 and v1.1 download ZIPs are unchanged and were not repackaged to include a license file. If using those downloads, also consult and retain the repository's [LICENSE](LICENSE).
 
 ## Further reading and feedback
 
