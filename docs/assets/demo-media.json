@@ -1,0 +1,58 @@
+{
+  "illustrative": true,
+  "interactive_seconds": 36,
+  "gif_preview_seconds": 12,
+  "silent": true,
+  "exports": [
+    {
+      "language": "zh",
+      "mp4": {
+        "file": "novel-skills-demo-36s.mp4",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "fps": 24.0,
+        "duration": 36.0,
+        "codec": "h264",
+        "bytes": 269136
+      },
+      "gif": {
+        "file": "novel-skills-demo-preview.gif",
+        "dimensions": [
+          960,
+          540
+        ],
+        "frames": 9,
+        "duration_ms": 12000,
+        "bytes": 439169
+      },
+      "poster_bytes": 62543
+    },
+    {
+      "language": "en",
+      "mp4": {
+        "file": "novel-skills-demo-36s.en.mp4",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "fps": 24.0,
+        "duration": 36.0,
+        "codec": "h264",
+        "bytes": 291435
+      },
+      "gif": {
+        "file": "novel-skills-demo-preview.en.gif",
+        "dimensions": [
+          960,
+          540
+        ],
+        "frames": 9,
+        "duration_ms": 12000,
+        "bytes": 458447
+      },
+      "poster_bytes": 69613
+    }
+  ]
+}

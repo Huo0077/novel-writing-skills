@@ -10,16 +10,19 @@ This skill suite connects story records, planning, drafting, passage review, and
 
 You do not need to memorize all 31 skill names. Start with `novel-router` and describe your task in ordinary language.
 
-[🎬 70s Showcase Video](docs/demo.html) · [Install / download v1.2](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.2) · [Full guide (Chinese)](docs/novel-skills/skills组使用指南.md) · [Quick start (Chinese)](小说skills-快速开始.md) · [Release history](https://github.com/Huo0077/novel-writing-skills/releases)
+[Watch the workflow demo](https://huo0077.github.io/novel-writing-skills/demo.html?lang=en) · [Install / download v1.2](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.2) · [Full guide (Chinese)](docs/novel-skills/skills组使用指南.md) · [Quick start (Chinese)](小说skills-快速开始.md) · [Release history](https://github.com/Huo0077/novel-writing-skills/releases)
 
 > This is **not a standalone novel generator**. It is a collection of instructions and tools for an AI assistant that can read and edit local files and follow skill workflows. Downloading the files does not automatically enable those abilities in a basic chat interface.
 
-## 🎬 70s Showcase Video
+## See it once: check → ask → review
 
-[![Novel Writing Skills Suite — 70-second Showcase Video](docs/assets/novel-skills-demo.gif)](docs/demo.html)
+[![Novel Writing Skills: check story state, ask the author, and review the revision. Open the full demo.](docs/assets/novel-skills-demo-preview.en.gif)](https://huo0077.github.io/novel-writing-skills/demo.html?lang=en)
 
-> 📺 **Interactive Web Player**: Click the banner above or open [`docs/demo.html`](docs/demo.html) (Bilingual toggle, AI voice narration, and WebM export)  
-> 📥 **Direct Video Download**: [`docs/assets/novel-skills-demo.mp4`](docs/assets/novel-skills-demo.mp4) (1080P)
+**A 12-second silent preview above; click for the full 36-second interactive demo.** Pause, seek, jump between chapters, or switch languages.
+
+[Open the player](https://huo0077.github.io/novel-writing-skills/demo.html?lang=en) · [Play / download MP4 (720p, 36 seconds, silent)](https://huo0077.github.io/novel-writing-skills/assets/novel-skills-demo-36s.en.mp4)
+
+> This is a **scripted illustration of the workflow, not a live model recording or a guarantee of results**. It keeps the author in control and does not claim exhaustive automatic auditing. The README shows an animated preview; the full page and MP4 open in a hosted player rather than an HTML source listing.
 
 ## Why this suite exists
 

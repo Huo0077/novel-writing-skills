@@ -10,16 +10,19 @@
 
 你不需要记住 31 个技能名。通过一个入口 `novel-router`，用自然语言说明当前任务即可。
 
-[🎬 70秒官方演示视频](docs/demo.html) · [安装与下载 v1.2](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.2) · [完整使用指南](docs/novel-skills/skills组使用指南.md) · [快速开始](小说skills-快速开始.md) · [历史版本](https://github.com/Huo0077/novel-writing-skills/releases)
+[观看流程演示](https://huo0077.github.io/novel-writing-skills/demo.html) · [安装与下载 v1.2](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.2) · [完整使用指南](docs/novel-skills/skills组使用指南.md) · [快速开始](小说skills-快速开始.md) · [历史版本](https://github.com/Huo0077/novel-writing-skills/releases)
 
 > 这不是独立运行的小说生成软件，而是一套供**能读取、编辑本地文件，并遵循技能指令的 AI 助手**使用的流程与工具。普通聊天窗口不会因为下载了文件就自动具备这些能力。
 
-## 🎬 70 秒官方演示视频
+## 看一次：核对 → 提问 → 回审
 
-[![小说创作 Skills 组 · 70秒官方架构演示](docs/assets/novel-skills-demo.gif)](docs/demo.html)
+[![小说创作 Skills 流程示意：核对故事状态，询问作者，再回审修改。点击打开完整演示。](docs/assets/novel-skills-demo-preview.gif)](https://huo0077.github.io/novel-writing-skills/demo.html)
 
-> 📺 **在线全屏交互放映**：点击上方动图或直接访问 [`docs/demo.html`](docs/demo.html)（内置中英双语切换、拟真人声配音解说、音效合成与 WebM 视频导出）  
-> 📥 **高清视频直链**：[`docs/assets/novel-skills-demo.mp4`](docs/assets/novel-skills-demo.mp4) (1080P)
+**上方是 12 秒静音预览，点击打开 36 秒完整交互演示。** 可暂停、拖动进度、按章节跳转或切换中英文。
+
+[打开播放页](https://huo0077.github.io/novel-writing-skills/demo.html) · [播放 / 下载 MP4（720p，36秒，无声）](https://huo0077.github.io/novel-writing-skills/assets/novel-skills-demo-36s.mp4)
+
+> 这是经过编排的**流程示意，不是模型实录或效果保证**。演示保留作者决定权，不声称自动发现全书问题。README 使用动图预览，完整页面和 MP4 在独立播放页打开，不再跳到 HTML 源码页。
 
 ## 为什么需要这套技能组？
 
