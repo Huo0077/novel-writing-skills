@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小说创作 Skills 组 · 官方演示 (Novel Writing Skills Suite - Official Showcase)</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    /* Cinematic Scene Transitions */
+    .scene-enter {
+      animation: sceneSlideIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .scene-exit {
+      animation: sceneSlideOut 0.3s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+    }
+
+    @keyframes sceneSlideIn {
+      0% {
+        opacity: 0;
+        transform: translateX(40px) scale(0.96);
+        filter: blur(6px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0px);
+      }
+    }
+
+    @keyframes sceneSlideOut {
+      0% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0px);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-40px) scale(0.96);
+        filter: blur(6px);
+      }
+    }
+
+    /* Staggered Card Entrance Animations */
+    .anim-card-1 { animation: cardMorphIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both; }
+    .anim-card-2 { animation: cardMorphIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both; }
+    .anim-card-3 { animation: cardMorphIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both; }
+    .anim-card-4 { animation: cardMorphIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both; }
+    .anim-card-5 { animation: cardMorphIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.30s both; }
+    .anim-card-6 { animation: cardMorphIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both; }
+
+    @keyframes cardMorphIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.93);
+        filter: blur(3px);
+      }
+      70% {
+        opacity: 1;
+        transform: translateY(-2px) scale(1.01);
+        filter: blur(0px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+      }
+    }
+
+    /* Scene Flash Wipe Overlay */
+    @keyframes transitionFlash {
+      0% { opacity: 0; }
+      40% { opacity: 0.3; }
+      100% { opacity: 0; }
+    }
+    .flash-overlay {
+      animation: transitionFlash 0.35s ease-out forwards;
+    }
+
+    /* Laser scanline */
+    @keyframes laserSweep {
+      0% { top: -5%; opacity: 0; }
+      20% { opacity: 0.85; }
+      80% { opacity: 0.85; }
+      100% { top: 105%; opacity: 0; }
+    }
+    .laser-beam {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #818cf8, #c084fc, #f43f5e, transparent);
+      box-shadow: 0 0 10px #c084fc, 0 0 20px #818cf8;
+      animation: laserSweep 2.4s infinite ease-in-out;
+    }
+
+    /* Pipeline Step Glowing Beacon */
+    @keyframes pulseStep {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(99, 102, 241, 0); }
+      50% { transform: scale(1.04); box-shadow: 0 0 14px rgba(129, 140, 248, 0.5); }
+    }
+    .active-step-glow {
+      animation: pulseStep 1.4s infinite ease-in-out;
+    }
+
+    /* Range slider custom styling */
+    input[type=range]::-webkit-slider-thumb {
+      appearance: none;
+      height: 14px;
+      width: 14px;
+      border-radius: 50%;
+      background: #a855f7;
+      cursor: pointer;
+      box-shadow: 0 0 12px #c084fc;
+      transition: transform 0.1s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.3);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans flex flex-col items-center justify-start p-3 sm:p-5 select-none overflow-x-hidden">
+
+  <!-- Main Container -->
+  <div class="w-full max-w-6xl flex flex-col gap-3 sm:gap-4">
+
+    <!-- Top Header & Language Switcher -->
+    <header class="flex flex-wrap items-center justify-between gap-3 bg-slate-900/90 border border-slate-800 rounded-2xl px-4 sm:px-6 py-2.5 shadow-xl backdrop-blur-md">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-600 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/30 text-white font-black text-lg">
+          ✦
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 id="app-title" class="font-extrabold text-base sm:text-lg tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200">
+              小说创作 Skills 组 · 官方演示
+            </h1>
+            <span class="px-2 py-0.5 text-[10px] font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 rounded-full font-mono">
+              01:10 FAST CUT
+            </span>
+          </div>
+          <p id="app-subtitle" class="text-xs text-slate-400">
+            31项专业技能 · 正史外置隔离 · 三层风险防线 · 伏笔与文风闭环
+          </p>
+        </div>
+      </div>
+
+      <!-- Action buttons & Language Switcher -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        
+        <!-- Language Switcher Pill -->
+        <div class="flex items-center bg-slate-800/90 rounded-lg p-0.5 border border-slate-700 text-xs shadow-inner">
+          <button id="lang-zh" class="px-3 py-1 rounded-md font-bold transition bg-indigo-600 text-white shadow">
+            中文
+          </button>
+          <button id="lang-en" class="px-3 py-1 rounded-md font-medium text-slate-400 hover:text-white transition">
+            English
+          </button>
+        </div>
+
+        <!-- Voice Narration Toggle -->
+        <button id="toggle-voice-btn" class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+          <span id="voice-icon">🔊</span>
+          <span id="voice-label">语音: 开</span>
+        </button>
+
+        <!-- Record & Export Video -->
+        <button id="record-btn" class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-rose-600/90 hover:bg-rose-500 text-white shadow-lg shadow-rose-600/30 border border-rose-400/30 transition">
+          <span id="record-icon">⏺</span>
+          <span id="record-label">录制导出</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 16:9 Video Theater Stage -->
+    <div id="theater-box" class="relative w-full aspect-video bg-black rounded-2xl border border-slate-800 shadow-2xl overflow-hidden flex flex-col justify-between group">
+      
+      <!-- Video Render Canvas Background -->
+      <canvas id="bg-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+      
+      <!-- Laser scanline -->
+      <div class="laser-beam pointer-events-none z-10"></div>
+
+      <!-- Transition Flash Effect Overlay -->
+      <div id="transition-curtain" class="absolute inset-0 bg-indigo-400/30 pointer-events-none z-30 opacity-0 transition-opacity"></div>
+
+      <!-- Top Overlay: Badges & Timer -->
+      <div class="absolute top-3.5 left-5 right-5 z-20 flex items-center justify-between pointer-events-none">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/60 border border-white/10 text-[11px] font-mono text-purple-300 backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span id="hud-label">70S NOVEL SKILLS SHOWCASE</span>
+          </span>
+          <span id="chapter-badge" class="px-2.5 py-1 rounded-md bg-indigo-950/80 border border-indigo-500/40 text-[11px] font-medium text-indigo-300 backdrop-blur-md transition-all">
+            CH 1 · 痛点与破局
+          </span>
+        </div>
+
+        <div id="recording-indicator" class="hidden flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/20 border border-rose-500 text-rose-300 text-xs font-mono font-bold animate-pulse backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+          <span>REC [70S EXPORT]</span>
+        </div>
+      </div>
+
+      <!-- MAIN ANIMATED SCENE STAGE -->
+      <div id="stage-wrapper" class="relative z-20 flex-1 flex items-center justify-center p-3 sm:p-5 text-center overflow-hidden">
+        <div id="stage-content" class="w-full flex items-center justify-center transition-all duration-300">
+          <!-- Dynamic scene HTML injected here -->
+        </div>
+      </div>
+
+      <!-- BILINGUAL SUBTITLES OVERLAY -->
+      <div class="relative z-30 px-6 pb-2 flex flex-col items-center justify-center pointer-events-none">
+        <div class="max-w-3xl w-full text-center px-4 py-1.5 rounded-xl bg-black/85 border border-white/10 backdrop-blur-lg shadow-2xl transition-all duration-300">
+          <p id="sub-zh" class="text-xs sm:text-sm font-semibold text-slate-100 tracking-wide drop-shadow">
+            传统长篇 AI 创作常面临遗忘、冲突与同质化。本技能组确立正史外置与安全审查核心原则。
+          </p>
+          <p id="sub-en" class="text-[10px] sm:text-xs text-indigo-300/90 font-medium tracking-normal mt-0.5">
+            Traditional AI fiction suffers from amnesia, contradiction, and clichés. The Suite externalizes canon with decoupled audits.
+          </p>
+        </div>
+      </div>
+
+      <!-- VIDEO CONTROLLER BAR (0 to 70s) -->
+      <div class="relative z-30 bg-gradient-to-t from-black/95 via-black/85 to-transparent pt-2.5 pb-2.5 px-5 flex flex-col gap-1.5">
+        
+        <!-- Timeline Progress Bar (0 to 70s) -->
+        <div class="relative flex items-center group/scrubber cursor-pointer">
+          <input id="timeline-slider" type="range" min="0" max="70" value="0" step="0.2"
+            class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-500 focus:outline-none transition-all group-hover/scrubber:h-2">
+        </div>
+
+        <!-- Controls Row -->
+        <div class="flex items-center justify-between text-slate-300 text-xs sm:text-sm">
+          
+          <div class="flex items-center gap-3">
+            <button id="play-pause-btn" class="w-7 h-7 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white flex items-center justify-center transition shadow-lg shadow-indigo-600/30 text-xs">
+              <span id="play-icon">▶</span>
+            </button>
+            <button id="prev-btn" title="Previous Scene" class="hover:text-white transition p-1">⏮</button>
+            <button id="next-btn" title="Next Scene" class="hover:text-white transition p-1">⏭</button>
+            <span id="time-display" class="font-mono text-xs text-slate-400">00:00 / 01:10</span>
+          </div>
+
+          <!-- Scene Pills -->
+          <div id="scene-pills" class="hidden sm:flex items-center gap-1.5 text-xs">
+            <!-- Injected by JS -->
+          </div>
+
+          <div class="flex items-center gap-3">
+            <select id="speed-select" class="bg-slate-800 text-slate-200 text-xs rounded border border-slate-700 px-1.5 py-0.5 focus:outline-none">
+              <option value="0.75">0.75x</option>
+              <option value="1.0" selected>1.0x</option>
+              <option value="1.25">1.25x</option>
+              <option value="1.5">1.5x</option>
+            </select>
+            <button id="fullscreen-btn" title="Toggle Fullscreen" class="hover:text-white transition p-1">⛶</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Scene Index & Live Tech Cards -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
+      
+      <!-- Left: Scene Navigator -->
+      <div class="lg:col-span-1 bg-slate-900/80 border border-slate-800/90 rounded-2xl p-3.5 flex flex-col gap-2 backdrop-blur-md">
+        <h3 id="nav-header-title" class="text-xs sm:text-sm font-bold text-slate-200 flex items-center justify-between">
+          <span class="flex items-center gap-2"><span>🎞️</span> 70秒快剪分幕</span>
+          <span class="text-[11px] text-purple-400 font-mono">5 SCENES</span>
+        </h3>
+        <div id="scene-list-ui" class="flex flex-col gap-1 overflow-y-auto max-h-[220px] pr-1">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+
+      <!-- Right: Architecture Focus Card & Terminal Box -->
+      <div class="lg:col-span-2 bg-slate-900/80 border border-slate-800/90 rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between gap-2.5 backdrop-blur-md">
+        <div>
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1.5 mb-1.5">
+            <h3 id="focus-card-title" class="text-xs sm:text-sm font-bold text-indigo-300 flex items-center gap-2">
+              <span>⚡</span> 架构规范与核心机制
+            </h3>
+            <span id="current-skill-tag" class="px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20 text-xs font-mono">
+              novel-router
+            </span>
+          </div>
+          <div id="tech-annotation" class="text-xs text-slate-300 leading-relaxed space-y-1">
+            <!-- Dynamic annotation text -->
+          </div>
+        </div>
+
+        <!-- Terminal Quick Action -->
+        <div class="bg-black/70 rounded-xl p-2 border border-slate-800 font-mono text-xs flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2 overflow-hidden text-slate-400 truncate">
+            <span class="text-emerald-400">PS D:\小说&gt;</span>
+            <span id="terminal-cmd" class="text-slate-200">python .codex/skills/novel-router/scripts/suite.py validate --tests</span>
+          </div>
+          <button id="copy-cmd-btn" class="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded border border-slate-700 text-[11px] shrink-0 transition">
+            复制
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    // 5 Scenes, Total exactly 70 seconds (14 seconds each)
+    // 100% Fully translated bilingual content
+    const scenes = [
+      {
+        id: 0,
+        startTime: 0,
+        endTime: 14,
+        badgeZh: "CH 1 · 痛点与破局",
+        badgeEn: "CH 1 · Pain Points & Solution",
+        titleZh: "创作者痛点与破局",
+        titleEn: "Pain Points & Solution",
+        skillTagZh: "架构哲学与问题诊断",
+        skillTagEn: "Philosophy & Diagnostics",
+        cmd: "cat docs/novel-skills/skills组使用指南.md",
+        narrationZh: "传统长篇 AI 创作常面临记忆遗忘、设定冲突与同质化。小说创作 Skills 组确立了正史外置与生成审查分离的核心原则。",
+        narrationEn: "Long-form AI fiction often suffers from context amnesia, canon contradiction, and clichés. Novel Writing Skills Suite externalizes canonical truth and enforces decoupled audits.",
+        subZh: "传统长篇 AI 创作常面临遗忘、冲突与同质化。本技能组确立正史外置与安全审查核心原则。",
+        subEn: "Traditional AI fiction suffers from amnesia, contradiction, and clichés. The Suite externalizes canon with decoupled audits.",
+        annotationZh: `
+          <p><strong>痛点破局：</strong>拒绝单一大提示词，故事事实独立保存在 <code>.novel/canon/</code> 正史库。</p>
+          <p><strong>核心原则：</strong>正史外置、生成审查分离、高风险改动暂停确认。</p>
+        `,
+        annotationEn: `
+          <p><strong>The Solution:</strong> Avoid fragile single prompts. Factual truth is externalized into <code>.novel/canon/</code>.</p>
+          <p><strong>Core Principles:</strong> External canon vault, decoupled drafting & audits, human pause triggers.</p>
+        `,
+        render: (lang) => `
+          <div class="max-w-3xl w-full flex flex-col items-center gap-2">
+            <div class="anim-card-1 inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-semibold">
+              ${lang === 'zh' ? '⚠️ 长篇 AI 创作的三大顽疾' : '⚠️ Top 3 Vulnerabilities in AI Fiction'}
+            </div>
+            <h2 class="anim-card-2 text-xl sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-indigo-200">
+              ${lang === 'zh' ? '告别设定崩溃 · 开启工业级小说创作' : 'Zero Canon Collapse · Industrial Fiction Engineering'}
+            </h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 w-full mt-1 text-left">
+              <div class="anim-card-3 p-3 rounded-xl bg-slate-900/90 border border-rose-500/40 shadow-lg relative overflow-hidden group hover:border-rose-400 transition-all">
+                <div class="text-rose-400 font-bold text-xs mb-1 flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+                  ${lang === 'zh' ? '上下文遗忘' : 'Context Amnesia'}
+                </div>
+                <div class="text-[11px] text-slate-300 leading-tight">
+                  ${lang === 'zh' ? '窗口推移导致伤势、物品与时间线丢失。' : 'Window drift silently drops injuries, items, and timeline.'}
+                </div>
+              </div>
+
+              <div class="anim-card-4 p-3 rounded-xl bg-slate-900/90 border border-amber-500/40 shadow-lg relative overflow-hidden group hover:border-amber-400 transition-all">
+                <div class="text-amber-400 font-bold text-xs mb-1 flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                  ${lang === 'zh' ? '设定冲突吃书' : 'Canon Contradiction'}
+                </div>
+                <div class="text-[11px] text-slate-300 leading-tight">
+                  ${lang === 'zh' ? '为强推剧情临时突破法则与人物动机。' : 'Ad-hoc text breaks world rules to force cheap plot.'}
+                </div>
+              </div>
+
+              <div class="anim-card-5 p-3 rounded-xl bg-slate-900/90 border border-cyan-500/40 shadow-lg relative overflow-hidden group hover:border-cyan-400 transition-all">
+                <div class="text-cyan-400 font-bold text-xs mb-1 flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
+                  ${lang === 'zh' ? '机械同质化' : 'Mechanical Clichés'}
+                </div>
+                <div class="text-[11px] text-slate-300 leading-tight">
+                  ${lang === 'zh' ? '词汇匮乏，暴力同义词替换毁坏文风。' : 'Blind synonym swaps destroy unique authorial voice.'}
+                </div>
+              </div>
+            </div>
+
+            <div class="anim-card-6 w-full mt-1 p-2 rounded-xl bg-gradient-to-r from-indigo-950/70 via-purple-950/70 to-emerald-950/70 border border-indigo-500/40 flex items-center justify-around text-xs shadow-lg">
+              <span class="text-indigo-300 font-bold flex items-center gap-1">
+                <span>🛡️</span> ${lang === 'zh' ? '正史外置 (.novel/canon/)' : 'External Canon (.novel/canon/)'}
+              </span>
+              <span class="text-purple-400 font-bold flex items-center gap-1">
+                <span>⚡</span> ${lang === 'zh' ? '生成与审查分离' : 'Decoupled Audits'}
+              </span>
+              <span class="text-emerald-300 font-bold flex items-center gap-1">
+                <span>🛑</span> ${lang === 'zh' ? '高风险暂停确认' : 'Human Pause Gate'}
+              </span>
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 1,
+        startTime: 14,
+        endTime: 28,
+        badgeZh: "CH 2 · 核心枢纽与技能矩阵",
+        badgeEn: "CH 2 · The Router & 31 Skills",
+        titleZh: "调度枢纽与技能矩阵",
+        titleEn: "Unified Router & Matrix",
+        skillTagZh: "novel-router 调度引擎",
+        skillTagEn: "novel-router Engine",
+        cmd: "python .codex/skills/novel-router/scripts/suite.py validate --tests",
+        narrationZh: "以 novel-router 为唯一入口，用自然语言即可在31个专业技能中自动调度最短工作链，支持三种协作模式。",
+        narrationEn: "With novel-router as the unified entry point, natural language automatically computes the minimal execution path across 31 specialized skills.",
+        subZh: "以 novel-router 为单入口，自然语言自动调度 31 个专业技能的最短工作链。",
+        subEn: "With novel-router as the single entry, natural language dispatches the minimal path across 31 skills.",
+        annotationZh: `
+          <p><strong>最短路由原则：</strong>杜绝全量加载。写正文只加载当前场景包与人物声音；查伏笔只读取公开信息。</p>
+          <p><strong>三种协作模式：</strong>作者助手、协同作者与半自动长篇。</p>
+        `,
+        annotationEn: `
+          <p><strong>Minimal Route:</strong> Only load exact context required. Never dump unneeded encyclopedias into context.</p>
+          <p><strong>3 Modes:</strong> Author Assistant, Co-Author, and Semi-Autonomous.</p>
+        `,
+        render: (lang) => `
+          <div class="max-w-3xl w-full flex flex-col items-center gap-2">
+            <div class="anim-card-1 inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-semibold">
+              🧭 ${lang === 'zh' ? '单入口自然语言调度' : 'Unified Natural Language Router'}
+            </div>
+            <h2 class="anim-card-2 text-xl sm:text-2xl font-black text-white">
+              ${lang === 'zh' ? 'novel-router · 31 项专业技能矩阵' : 'novel-router · 31 Specialized Skills Matrix'}
+            </h2>
+            
+            <div class="anim-card-3 relative w-full py-1 flex items-center justify-center">
+              <div class="relative z-10 px-4 py-1.5 rounded-xl bg-indigo-600 text-white font-extrabold text-xs shadow-xl shadow-indigo-600/40 border border-indigo-300 flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                <span>novel-router (${lang === 'zh' ? '最短调用链计算' : 'Minimal Chain Calculation'})</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 w-full text-center text-[10px]">
+              <div class="anim-card-1 p-2 rounded-lg bg-slate-900/90 border border-indigo-500/40">
+                <span class="text-indigo-300 font-bold block mb-0.5">${lang === 'zh' ? '基础总控' : 'Core'}</span>
+                <span class="text-slate-400">7 Skills</span>
+              </div>
+              <div class="anim-card-2 p-2 rounded-lg bg-slate-900/90 border border-purple-500/40">
+                <span class="text-purple-300 font-bold block mb-0.5">${lang === 'zh' ? '故事状态' : 'State'}</span>
+                <span class="text-slate-400">6 Skills</span>
+              </div>
+              <div class="anim-card-3 p-2 rounded-lg bg-slate-900/90 border border-pink-500/40">
+                <span class="text-pink-300 font-bold block mb-0.5">${lang === 'zh' ? '规划编排' : 'Planning'}</span>
+                <span class="text-slate-400">3 Skills</span>
+              </div>
+              <div class="anim-card-4 p-2 rounded-lg bg-slate-900/90 border border-cyan-500/40">
+                <span class="text-cyan-300 font-bold block mb-0.5">${lang === 'zh' ? '正文生成' : 'Drafting'}</span>
+                <span class="text-slate-400">2 Skills</span>
+              </div>
+              <div class="anim-card-5 p-2 rounded-lg bg-slate-900/90 border border-amber-500/40">
+                <span class="text-amber-300 font-bold block mb-0.5">${lang === 'zh' ? '审查诊断' : 'Audits'}</span>
+                <span class="text-slate-400">5 Skills</span>
+              </div>
+              <div class="anim-card-6 p-2 rounded-lg bg-slate-900/90 border border-emerald-500/40">
+                <span class="text-emerald-300 font-bold block mb-0.5">${lang === 'zh' ? '伏笔修订' : 'Foreshadow'}</span>
+                <span class="text-slate-400">8 Skills</span>
+              </div>
+            </div>
+
+            <div class="anim-card-6 w-full bg-slate-950/80 rounded-lg p-2 border border-slate-800 text-left text-[11px] font-mono text-slate-300 flex items-center justify-between">
+              <span class="text-indigo-400 truncate">
+                ${lang === 'zh' ? '&gt; “续写第3章决战，保持主角重伤状态”' : '&gt; "Draft Ch.3 duel. Keep protagonist injured."'}
+              </span>
+              <span class="text-emerald-400 font-bold shrink-0 ml-2">
+                ${lang === 'zh' ? '装载: [context ➔ scene-plan ➔ draft ➔ review]' : 'Route: [context ➔ scene-plan ➔ draft ➔ review]'}
+              </span>
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 2,
+        startTime: 28,
+        endTime: 42,
+        badgeZh: "CH 3 · 正史外置与三层防线",
+        badgeEn: "CH 3 · Canon Vault & 3-Tier Guard",
+        titleZh: "正史保护与三层防线",
+        titleEn: "Canon Vault & 3-Tier Guard",
+        skillTagZh: "novel-canon 正史守护",
+        skillTagEn: "novel-canon Gatekeeper",
+        cmd: "ls .novel/canon/ -Name; ls .novel/proposals/ -Name",
+        narrationZh: "草稿绝不等于正史。系统建立三层防线：低风险暂存，中风险汇总，高风险立即暂停并由作者确认，设定坚如磐石。",
+        narrationEn: "Drafts never equal canon. A 3-tier risk model safeguards your story: low-risk tentative, medium-risk review, and high-risk human pause.",
+        subZh: "草稿绝不等于正史。三层防线：低风险暂存，中风险汇总，高风险暂停确认。",
+        subEn: "Drafts never equal canon. 3-tier defense: low-risk tentative, medium-risk review, high-risk human pause.",
+        annotationZh: `
+          <p><strong>正史外置：</strong>事实存储在 <code>.novel/canon/</code>，AI生成的只是 <code>.novel/proposals/</code> 待确认提案。</p>
+          <p><strong>高风险暂停：</strong>遇核心真相揭露或法则突变，强制暂停并提供 2-3 个分支由作者决断。</p>
+        `,
+        annotationEn: `
+          <p><strong>External Canon:</strong> Facts live in <code>.novel/canon/</code>. AI drafts only yield proposed deltas in <code>.novel/proposals/</code>.</p>
+          <p><strong>High-Risk Halt:</strong> If secrets or rules are altered, execution stops for author approval.</p>
+        `,
+        render: (lang) => `
+          <div class="max-w-3xl w-full flex flex-col items-center gap-2">
+            <div class="anim-card-1 inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold">
+              🛡️ ${lang === 'zh' ? '神圣法则：草稿 ≠ 正史' : 'Iron Rule: Draft ≠ Canon'}
+            </div>
+            <h2 class="anim-card-2 text-xl sm:text-2xl font-black text-white">
+              ${lang === 'zh' ? '三层风险防线 · 绝不擅自篡改核心事实' : '3-Tier Risk Guard · Zero Unapproved Overwrites'}
+            </h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 w-full text-left mt-1">
+              <div class="anim-card-3 p-3 rounded-xl bg-slate-900 border border-emerald-500/40 relative">
+                <div class="flex items-center gap-1.5 text-emerald-300 font-bold text-xs mb-1">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  <span>TENTATIVE (${lang === 'zh' ? '低风险' : 'Low'})</span>
+                </div>
+                <p class="text-[11px] text-slate-300 leading-tight">
+                  ${lang === 'zh' ? '临时动作、普通道具交互' : 'Micro-actions, routine object use'}
+                </p>
+                <div class="mt-2 text-[10px] text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded font-mono">
+                  ${lang === 'zh' ? '安全暂存，不阻断' : 'Auto tentative, safe'}
+                </div>
+              </div>
+
+              <div class="anim-card-4 p-3 rounded-xl bg-slate-900 border border-amber-500/40 relative">
+                <div class="flex items-center gap-1.5 text-amber-300 font-bold text-xs mb-1">
+                  <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                  <span>PENDING (${lang === 'zh' ? '中风险' : 'Medium'})</span>
+                </div>
+                <p class="text-[11px] text-slate-300 leading-tight">
+                  ${lang === 'zh' ? '次要人物伤势、局部地形' : 'NPC injuries, local map shifts'}
+                </p>
+                <div class="mt-2 text-[10px] text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded font-mono">
+                  ${lang === 'zh' ? '卷/章节点集中确认' : 'Batched milestone review'}
+                </div>
+              </div>
+
+              <div class="anim-card-5 p-3 rounded-xl bg-slate-900 border border-rose-500/50 relative shadow-lg shadow-rose-950/50">
+                <div class="flex items-center gap-1.5 text-rose-300 font-bold text-xs mb-1">
+                  <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+                  <span>REQUIRES_HUMAN (${lang === 'zh' ? '高风险' : 'High'})</span>
+                </div>
+                <p class="text-[11px] text-slate-300 leading-tight">
+                  ${lang === 'zh' ? '法则突破、核心秘密泄露' : 'Law breaks, secret reveals'}
+                </p>
+                <div class="mt-2 text-[10px] text-rose-300 bg-rose-950 px-2 py-0.5 rounded font-bold font-mono">
+                  ${lang === 'zh' ? '立即暂停！作者决断' : 'HALT! Author decision'}
+                </div>
+              </div>
+            </div>
+
+            <div class="anim-card-6 w-full flex items-center justify-between px-4 py-1.5 rounded-lg bg-black/70 border border-slate-800 text-[11px] font-mono shadow-inner">
+              <span class="text-purple-300">${lang === 'zh' ? '提案池: .novel/proposals/' : 'Proposals: .novel/proposals/'}</span>
+              <span class="text-amber-400 font-bold flex items-center gap-1">
+                <span>🔒</span> ${lang === 'zh' ? 'novel-canon 拦截门禁' : 'novel-canon Gatekeeper'} <span>🔒</span>
+              </span>
+              <span class="text-emerald-300">${lang === 'zh' ? '神圣正史: .novel/canon/' : 'Inviolable Canon: .novel/canon/'}</span>
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 3,
+        startTime: 42,
+        endTime: 56,
+        badgeZh: "CH 4 · 伏笔双重功能与风格审计",
+        badgeEn: "CH 4 · Dual Foreshadow & Style Audit",
+        titleZh: "伏笔工程与风格审计",
+        titleEn: "Foreshadow & Style Audit",
+        skillTagZh: "伏笔工程与语境润色",
+        skillTagEn: "Foreshadow & Contextual Style",
+        cmd: "python -c \"import json; print('Style Audit Passed')\"",
+        narrationZh: "伏笔兼顾当前场景与深层回看价值。风格审计精准保护作者主题回环与角色口吻，杜绝机械化无脑换词。",
+        narrationEn: "Foreshadowing serves both immediate drama and future revelations. Style audits preserve authorial voice and recurring motifs while removing robotic fillers.",
+        subZh: "伏笔兼顾当前场景与深层回看；风格审计保护作者主题意象与独特口吻。",
+        subEn: "Foreshadowing balances immediate scene with deep revelation; style audits protect authorial voice and motifs.",
+        annotationZh: `
+          <p><strong>伏笔双重功能：</strong>表层服务当前戏剧动作，深层隐藏回看价值；支持独立读者盲测。</p>
+          <p><strong>文风保护：</strong>坚决保护角色口吻与主题回环；仅消除空洞套话。</p>
+        `,
+        annotationEn: `
+          <p><strong>Dual-Function Foreshadow:</strong> Surface utility fulfills immediate logic; deep layer seeds future revelations.</p>
+          <p><strong>Voice Protection:</strong> Protects character catchphrases and poetic motifs against blind synonym swapping.</p>
+        `,
+        render: (lang) => `
+          <div class="max-w-3xl w-full flex flex-col items-center gap-2">
+            <div class="anim-card-1 inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
+              ✨ ${lang === 'zh' ? '精巧因果 · 灵动文采' : 'Subtle Causality & Organic Style'}
+            </div>
+            <h2 class="anim-card-2 text-xl sm:text-2xl font-black text-white">
+              ${lang === 'zh' ? '双重伏笔闭环 + 智能文风审计' : 'Dual-Function Clues & Contextual Style Audit'}
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full text-left text-xs mt-1">
+              <div class="anim-card-3 p-3 rounded-xl bg-slate-900 border border-cyan-500/40">
+                <div class="text-cyan-300 font-bold mb-1 flex items-center justify-between">
+                  <span>🗝️ ${lang === 'zh' ? '伏笔双重功能' : 'Dual-Function Clue'}</span>
+                  <span class="text-[10px] bg-cyan-950 px-1.5 py-0.5 rounded text-cyan-200">${lang === 'zh' ? '自然无痕' : 'Seamless'}</span>
+                </div>
+                <div class="text-[11px] text-slate-300 space-y-1">
+                  <p>• <strong>${lang === 'zh' ? '表层功能' : 'Surface Utility'}</strong>: ${lang === 'zh' ? '满足当下动作逻辑（随手拿黄铜钥匙）' : 'Satisfies immediate scene logic (grabbing a brass key)'}</p>
+                  <p>• <strong>${lang === 'zh' ? '深层线索' : 'Deep Narrative Seed'}</strong>: ${lang === 'zh' ? '多章后揭晓为钟楼密室唯一钥匙' : 'Revealed chapters later as the sole vault key'}</p>
+                </div>
+              </div>
+
+              <div class="anim-card-4 p-3 rounded-xl bg-slate-900 border border-pink-500/40">
+                <div class="text-pink-300 font-bold mb-1 flex items-center justify-between">
+                  <span>🎨 ${lang === 'zh' ? '风格审计与润色' : 'Style Audit & Revision'}</span>
+                  <span class="text-[10px] bg-pink-950 px-1.5 py-0.5 rounded text-pink-200">${lang === 'zh' ? '保护母题' : 'Voice Protected'}</span>
+                </div>
+                <div class="text-[11px] text-slate-300 space-y-1">
+                  <p>• <strong>${lang === 'zh' ? '坚决保护' : 'Guarded Whitelist'}</strong>: ${lang === 'zh' ? '角色标志口吻、母题象征、有意回环' : 'Character catchphrases, motifs, deliberate echoes'}</p>
+                  <p>• <strong>${lang === 'zh' ? '精准消除' : 'Targeted Cleanup'}</strong>: ${lang === 'zh' ? '消除“不禁苦笑”等AI套话' : 'Eliminates repetitive empty AI fillers'}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="anim-card-5 w-full bg-purple-950/50 border border-purple-500/30 rounded-lg p-2 text-left text-[11px] text-purple-200 shadow-inner">
+              ⚡ <strong>novel-impact-review</strong>: ${lang === 'zh' 
+                ? '改动细节自动检查上下游依赖，防止牵一发而动全身。' 
+                : 'Any prose revision immediately traces upstream and downstream narrative dependencies.'}
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 4,
+        startTime: 56,
+        endTime: 70,
+        badgeZh: "CH 5 · 六步闭环与快速启动",
+        badgeEn: "CH 5 · 6-Step Loop & Quickstart",
+        titleZh: "创作闭环与快速启动",
+        titleEn: "Workflow Loop & Quickstart",
+        skillTagZh: "极简日常闭环指南",
+        skillTagEn: "Closed Loop Guide",
+        cmd: "python .codex/skills/novel-router/scripts/suite.py validate --tests",
+        narrationZh: "规划、隔离、写作、回审、提案、快照六步极简闭环，开箱即用。一句话指令，立即开启你的长篇协作之旅！",
+        narrationEn: "Plan, isolate, draft, review, propose, and checkpoint: a 6-step loop ready out of the box. Start your long-form collaborative writing today!",
+        subZh: "规划 ➔ 隔离 ➔ 写作 ➔ 回审 ➔ 提案 ➔ 快照。六步极简闭环，开箱即用。",
+        subEn: "Plan ➔ Isolate ➔ Draft ➔ Review ➔ Propose ➔ Checkpoint. 6-step loop ready out of the box.",
+        annotationZh: `
+          <p><strong>极简日常工作流：</strong>规划 ➔ 上下文隔离 ➔ 写一场 ➔ 事实回审 ➔ 提交状态变化 ➔ 保存检查点。</p>
+          <p><strong>一键使用：</strong>对助手说：<em>“使用 novel-router。我的任务是开始新小说，重大改变先问我。”</em></p>
+        `,
+        annotationEn: `
+          <p><strong>Daily 6-Step Workflow:</strong> Plan ➔ Context Isolation ➔ Draft Scene ➔ Review Reality ➔ Propose Delta ➔ Checkpoint.</p>
+          <p><strong>Get Started:</strong> Tell your assistant: <em>"Use novel-router. My task is to start a novel. Ask me before making any major changes."</em></p>
+        `,
+        render: (lang) => `
+          <div class="max-w-3xl w-full flex flex-col items-center gap-2">
+            <div class="anim-card-1 inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
+              🚀 ${lang === 'zh' ? '极简创作日常六步闭环' : '6-Step Fiction Engineering Pipeline'}
+            </div>
+            <h2 class="anim-card-2 text-xl sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 via-teal-200 to-indigo-200">
+              ${lang === 'zh' ? '开箱即用 · 步步留痕 · 自由回溯' : 'Out of the Box · Traceable Progress · Instant Rollback'}
+            </h2>
+
+            <div class="grid grid-cols-2 sm:grid-cols-6 gap-2 w-full text-center text-xs font-mono mt-1">
+              <div class="anim-card-1 p-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-300">
+                <span class="block text-[10px] text-slate-500">01</span>
+                ${lang === 'zh' ? '场景规划' : 'Scene Plan'}
+              </div>
+              <div class="anim-card-2 p-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-300">
+                <span class="block text-[10px] text-slate-500">02</span>
+                ${lang === 'zh' ? '公开包隔离' : 'Public Pkt'}
+              </div>
+              <div class="anim-card-3 p-2 rounded-lg bg-indigo-950 border border-indigo-500 text-indigo-300 font-bold active-step-glow">
+                <span class="block text-[10px] text-indigo-400">03</span>
+                ${lang === 'zh' ? '小批写作' : 'Batch Draft'}
+              </div>
+              <div class="anim-card-4 p-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-300">
+                <span class="block text-[10px] text-slate-500">04</span>
+                ${lang === 'zh' ? '实际回审' : 'Fact Review'}
+              </div>
+              <div class="anim-card-5 p-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-300">
+                <span class="block text-[10px] text-slate-500">05</span>
+                ${lang === 'zh' ? '分级提案' : 'Proposals'}
+              </div>
+              <div class="anim-card-6 p-2 rounded-lg bg-emerald-950 border border-emerald-500 text-emerald-300 font-bold active-step-glow">
+                <span class="block text-[10px] text-emerald-400">06</span>
+                ${lang === 'zh' ? '检查点快照' : 'Checkpoint'}
+              </div>
+            </div>
+
+            <div class="anim-card-5 w-full mt-1.5 p-3 rounded-xl bg-gradient-to-r from-indigo-900/50 via-purple-900/50 to-slate-900/50 border border-indigo-500/40 text-left shadow-lg">
+              <div class="text-xs font-bold text-indigo-300 mb-0.5 flex items-center gap-1.5">
+                <span>🎯</span>
+                <span>${lang === 'zh' ? '唯一起手指令：' : 'Unified Kickoff Prompt:'}</span>
+              </div>
+              <p class="text-xs text-slate-200 font-mono bg-black/40 p-2 rounded border border-white/5">
+                ${lang === 'zh' 
+                  ? '“使用 novel-router。我的任务是开始新小说，先选择必要步骤，重大改变先问我。”' 
+                  : '"Use novel-router. My task is to start a novel. Select necessary steps and ask me before making any major changes."'}
+              </p>
+            </div>
+          </div>
+        `
+      }
+    ];
+
+    // Global State
+    let currentLang = 'zh'; // 'zh' or 'en'
+    let currentSceneIndex = 0;
+    let isPlaying = false;
+    let playTimer = null;
+    let currentTime = 0; // 0 to 70s
+    let playbackRate = 1.0;
+    let voiceEnabled = true;
+    let isRecording = false;
+    let mediaRecorder = null;
+    let recordedChunks = [];
+
+    // DOM Elements
+    const stageContent = document.getElementById('stage-content');
+    const chapterBadge = document.getElementById('chapter-badge');
+    const currentSkillTag = document.getElementById('current-skill-tag');
+    const techAnnotation = document.getElementById('tech-annotation');
+    const terminalCmd = document.getElementById('terminal-cmd');
+    const timelineSlider = document.getElementById('timeline-slider');
+    const timeDisplay = document.getElementById('time-display');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const playIcon = document.getElementById('play-icon');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const speedSelect = document.getElementById('speed-select');
+    const toggleVoiceBtn = document.getElementById('toggle-voice-btn');
+    const voiceIcon = document.getElementById('voice-icon');
+    const voiceLabel = document.getElementById('voice-label');
+    const recordBtn = document.getElementById('record-btn');
+    const recordIcon = document.getElementById('record-icon');
+    const recordLabel = document.getElementById('record-label');
+    const recordingIndicator = document.getElementById('recording-indicator');
+    const sceneListUi = document.getElementById('scene-list-ui');
+    const scenePills = document.getElementById('scene-pills');
+    const copyCmdBtn = document.getElementById('copy-cmd-btn');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    const theaterBox = document.getElementById('theater-box');
+    const transitionCurtain = document.getElementById('transition-curtain');
+    const langZhBtn = document.getElementById('lang-zh');
+    const langEnBtn = document.getElementById('lang-en');
+    const subZh = document.getElementById('sub-zh');
+    const subEn = document.getElementById('sub-en');
+    const appTitle = document.getElementById('app-title');
+    const appSubtitle = document.getElementById('app-subtitle');
+    const navHeaderTitle = document.getElementById('nav-header-title');
+    const focusCardTitle = document.getElementById('focus-card-title');
+    const hudLabel = document.getElementById('hud-label');
+
+    // Web Audio Synthesizer
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    function playSfx(type) {
+      try {
+        const ctx = getAudioContext();
+        if (ctx.state === 'suspended') ctx.resume();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        if (type === 'click') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(880, now);
+          osc.frequency.exponentialRampToValueAtTime(440, now + 0.05);
+          gain.gain.setValueAtTime(0.06, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+          osc.start(now);
+          osc.stop(now + 0.05);
+        } else if (type === 'transition') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.exponentialRampToValueAtTime(700, now + 0.2);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+          osc.start(now);
+          osc.stop(now + 0.2);
+        }
+      } catch (e) {}
+    }
+
+    // Web Speech Narration Engine
+    let currentUtterance = null;
+    function speakNarration(text, lang) {
+      if (!voiceEnabled || !('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      currentUtterance = new SpeechSynthesisUtterance(text);
+      currentUtterance.lang = lang === 'en' ? 'en-US' : 'zh-CN';
+      // Slightly more energetic rate for 14-second pacing
+      currentUtterance.rate = playbackRate * (lang === 'en' ? 1.05 : 1.15);
+      window.speechSynthesis.speak(currentUtterance);
+    }
+
+    function stopNarration() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    // Format Seconds to MM:SS
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+
+    // Initialize UI
+    function initUI() {
+      // Build scene list
+      sceneListUi.innerHTML = scenes.map((sc, idx) => `
+        <button data-index="${idx}" class="scene-item text-left px-3 py-1.5 rounded-xl transition text-xs flex items-center justify-between border ${idx === 0 ? 'bg-indigo-600/20 border-indigo-500/50 text-white' : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:bg-slate-800'}">
+          <div class="flex items-center gap-2 truncate">
+            <span class="w-4 h-4 rounded-md bg-slate-800 flex items-center justify-center text-[10px] font-mono text-slate-300">${idx + 1}</span>
+            <span class="truncate font-medium">${currentLang === 'zh' ? sc.titleZh : sc.titleEn}</span>
+          </div>
+          <span class="text-[10px] font-mono text-slate-500">${formatTime(sc.startTime)}</span>
+        </button>
+      `).join('');
+
+      // Build scene pills
+      scenePills.innerHTML = scenes.map((sc, idx) => `
+        <button data-index="${idx}" class="scene-pill px-2 py-0.5 rounded transition ${idx === 0 ? 'bg-indigo-600 text-white font-bold' : 'text-slate-400 hover:text-slate-200'}">
+          ${idx + 1}
+        </button>
+      `).join('');
+
+      document.querySelectorAll('.scene-item, .scene-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.dataset.index);
+          jumpToScene(idx);
+          playSfx('click');
+        });
+      });
+
+      renderCurrentScene(false);
+    }
+
+    // Render Scene with Cinematic Transition
+    function renderCurrentScene(animateTransition = true) {
+      const sc = scenes[currentSceneIndex];
+      chapterBadge.textContent = currentLang === 'zh' ? sc.badgeZh : sc.badgeEn;
+      currentSkillTag.textContent = currentLang === 'zh' ? sc.skillTagZh : sc.skillTagEn;
+      techAnnotation.innerHTML = currentLang === 'zh' ? sc.annotationZh : sc.annotationEn;
+      terminalCmd.textContent = sc.cmd;
+
+      // Subtitles
+      subZh.textContent = sc.subZh;
+      subEn.textContent = sc.subEn;
+
+      // Update sidebar
+      document.querySelectorAll('.scene-item').forEach((item, idx) => {
+        const titleEl = item.querySelector('.truncate.font-medium');
+        if (titleEl) titleEl.textContent = currentLang === 'zh' ? scenes[idx].titleZh : scenes[idx].titleEn;
+        if (idx === currentSceneIndex) {
+          item.className = 'scene-item text-left px-3 py-1.5 rounded-xl transition text-xs flex items-center justify-between border bg-indigo-600/20 border-indigo-500/50 text-white shadow-lg shadow-indigo-600/20';
+        } else {
+          item.className = 'scene-item text-left px-3 py-1.5 rounded-xl transition text-xs flex items-center justify-between border bg-slate-900/60 border-slate-800 text-slate-400 hover:bg-slate-800';
+        }
+      });
+
+      // Update pills
+      document.querySelectorAll('.scene-pill').forEach((pill, idx) => {
+        if (idx === currentSceneIndex) {
+          pill.className = 'scene-pill px-2 py-0.5 rounded bg-indigo-600 text-white font-bold text-xs shadow';
+        } else {
+          pill.className = 'scene-pill px-2 py-0.5 rounded text-slate-400 hover:text-slate-200 text-xs';
+        }
+      });
+
+      // Render Stage Content with Scene Slide Transition
+      if (animateTransition) {
+        transitionCurtain.classList.remove('opacity-0');
+        transitionCurtain.classList.add('flash-overlay');
+        setTimeout(() => {
+          transitionCurtain.classList.remove('flash-overlay');
+          transitionCurtain.classList.add('opacity-0');
+        }, 350);
+
+        stageContent.className = 'w-full flex items-center justify-center scene-exit';
+        setTimeout(() => {
+          stageContent.innerHTML = sc.render(currentLang);
+          stageContent.className = 'w-full flex items-center justify-center scene-enter';
+        }, 160);
+      } else {
+        stageContent.innerHTML = sc.render(currentLang);
+        stageContent.className = 'w-full flex items-center justify-center scene-enter';
+      }
+
+      // Voice Narration
+      if (isPlaying) {
+        const textToSpeak = currentLang === 'zh' ? sc.narrationZh : sc.narrationEn;
+        speakNarration(textToSpeak, currentLang);
+      }
+    }
+
+    // Jump to Scene
+    function jumpToScene(index) {
+      if (index < 0 || index >= scenes.length) return;
+      currentSceneIndex = index;
+      currentTime = scenes[index].startTime;
+      timelineSlider.value = currentTime;
+      timeDisplay.textContent = `${formatTime(currentTime)} / 01:10`;
+      playSfx('transition');
+      renderCurrentScene(true);
+    }
+
+    // Toggle Play
+    function togglePlay() {
+      isPlaying = !isPlaying;
+      if (isPlaying) {
+        playIcon.textContent = '⏸';
+        const sc = scenes[currentSceneIndex];
+        speakNarration(currentLang === 'zh' ? sc.narrationZh : sc.narrationEn, currentLang);
+        startPlaybackLoop();
+      } else {
+        playIcon.textContent = '▶';
+        stopNarration();
+        stopPlaybackLoop();
+      }
+    }
+
+    function startPlaybackLoop() {
+      stopPlaybackLoop();
+      const intervalMs = 100;
+      playTimer = setInterval(() => {
+        currentTime += (intervalMs / 1000) * playbackRate;
+        timelineSlider.value = currentTime;
+        timeDisplay.textContent = `${formatTime(currentTime)} / 01:10`;
+
+        const currentSc = scenes[currentSceneIndex];
+        if (currentTime >= currentSc.endTime) {
+          if (currentSceneIndex < scenes.length - 1) {
+            currentSceneIndex++;
+            renderCurrentScene(true);
+            playSfx('transition');
+          } else {
+            // End of 70s
+            togglePlay();
+            currentTime = 0;
+            timelineSlider.value = 0;
+            currentSceneIndex = 0;
+            renderCurrentScene(true);
+            if (isRecording) stopRecording();
+            return;
+          }
+        }
+      }, intervalMs);
+    }
+
+    function stopPlaybackLoop() {
+      if (playTimer) {
+        clearInterval(playTimer);
+        playTimer = null;
+      }
+    }
+
+    // Timeline Drag
+    timelineSlider.addEventListener('input', (e) => {
+      currentTime = parseFloat(e.target.value);
+      timeDisplay.textContent = `${formatTime(currentTime)} / 01:10`;
+      const matchIdx = scenes.findIndex(sc => currentTime >= sc.startTime && currentTime < sc.endTime);
+      if (matchIdx !== -1 && matchIdx !== currentSceneIndex) {
+        currentSceneIndex = matchIdx;
+        renderCurrentScene(true);
+      }
+    });
+
+    // Speed Selector
+    speedSelect.addEventListener('change', (e) => {
+      playbackRate = parseFloat(e.target.value);
+      if (isPlaying) {
+        const sc = scenes[currentSceneIndex];
+        speakNarration(currentLang === 'zh' ? sc.narrationZh : sc.narrationEn, currentLang);
+      }
+    });
+
+    // Voice Toggle
+    toggleVoiceBtn.addEventListener('click', () => {
+      voiceEnabled = !voiceEnabled;
+      if (voiceEnabled) {
+        voiceIcon.textContent = '🔊';
+        voiceLabel.textContent = currentLang === 'zh' ? '语音: 开' : 'Audio: ON';
+        if (isPlaying) {
+          const sc = scenes[currentSceneIndex];
+          speakNarration(currentLang === 'zh' ? sc.narrationZh : sc.narrationEn, currentLang);
+        }
+      } else {
+        voiceIcon.textContent = '🔇';
+        voiceLabel.textContent = currentLang === 'zh' ? '语音: 关' : 'Audio: OFF';
+        stopNarration();
+      }
+      playSfx('click');
+    });
+
+    // Bilingual Switcher
+    function setLanguage(lang) {
+      if (currentLang === lang) return;
+      currentLang = lang;
+      if (currentLang === 'zh') {
+        langZhBtn.className = 'px-3 py-1 rounded-md font-bold transition bg-indigo-600 text-white shadow';
+        langEnBtn.className = 'px-3 py-1 rounded-md font-medium text-slate-400 hover:text-white transition';
+        appTitle.textContent = '小说创作 Skills 组 · 官方演示';
+        appSubtitle.textContent = '31项专业技能 · 正史外置隔离 · 三层风险防线 · 伏笔与文风闭环';
+        voiceLabel.textContent = voiceEnabled ? '语音: 开' : '语音: 关';
+        recordLabel.textContent = isRecording ? '停止录制' : '录制导出';
+        navHeaderTitle.innerHTML = '<span class="flex items-center gap-2"><span>🎞️</span> 70秒快剪分幕</span><span class="text-[11px] text-purple-400 font-mono">5 SCENES</span>';
+        focusCardTitle.innerHTML = '<span>⚡</span> 架构规范与核心机制';
+        copyCmdBtn.textContent = '复制';
+        hudLabel.textContent = '70S NOVEL SKILLS SHOWCASE';
+      } else {
+        langEnBtn.className = 'px-3 py-1 rounded-md font-bold transition bg-indigo-600 text-white shadow';
+        langZhBtn.className = 'px-3 py-1 rounded-md font-medium text-slate-400 hover:text-white transition';
+        appTitle.textContent = 'Novel Writing Skills Suite · Showcase';
+        appSubtitle.textContent = '31 Specialized Skills · External Canon Vault · 3-Tier Risk Guard · Closed Loop';
+        voiceLabel.textContent = voiceEnabled ? 'Audio: ON' : 'Audio: OFF';
+        recordLabel.textContent = isRecording ? 'Stop Rec' : 'Export Video';
+        navHeaderTitle.innerHTML = '<span class="flex items-center gap-2"><span>🎞️</span> 70s Scene Index</span><span class="text-[11px] text-purple-400 font-mono">5 SCENES</span>';
+        focusCardTitle.innerHTML = '<span>⚡</span> Architectural Focus & Core Mechanics';
+        copyCmdBtn.textContent = 'Copy';
+        hudLabel.textContent = '70S NOVEL WRITING SKILLS';
+      }
+      playSfx('click');
+      renderCurrentScene(true);
+    }
+
+    langZhBtn.addEventListener('click', () => setLanguage('zh'));
+    langEnBtn.addEventListener('click', () => setLanguage('en'));
+
+    // Step navigation
+    prevBtn.addEventListener('click', () => jumpToScene(Math.max(0, currentSceneIndex - 1)));
+    nextBtn.addEventListener('click', () => jumpToScene(Math.min(scenes.length - 1, currentSceneIndex + 1)));
+    playPauseBtn.addEventListener('click', togglePlay);
+
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.code === 'Space') {
+        e.preventDefault();
+        togglePlay();
+      } else if (e.code === 'ArrowLeft') {
+        prevBtn.click();
+      } else if (e.code === 'ArrowRight') {
+        nextBtn.click();
+      }
+    });
+
+    // Copy Command
+    copyCmdBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(terminalCmd.textContent).then(() => {
+        copyCmdBtn.textContent = currentLang === 'zh' ? '已复制！' : 'Copied!';
+        setTimeout(() => { copyCmdBtn.textContent = currentLang === 'zh' ? '复制' : 'Copy'; }, 1500);
+        playSfx('click');
+      });
+    });
+
+    // Fullscreen
+    fullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        theaterBox.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen();
+      }
+      playSfx('click');
+    });
+
+    // WebM Video Export Engine
+    recordBtn.addEventListener('click', async () => {
+      if (!isRecording) {
+        startRecording();
+      } else {
+        stopRecording();
+      }
+    });
+
+    async function startRecording() {
+      try {
+        let stream = null;
+        if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
+          const confirmMsg = currentLang === 'zh'
+            ? "即将开始 70 秒全高清视频录制！\n\n提示：建议在弹出的窗口中选择【当前标签页】，系统将以 70 秒时钟全自动放映录制，结束后自动下载 WebM 视频文件。"
+            : "Starting 70-second HD video recording!\n\nTip: Select 'Current Tab' in the popup window. The system will record the entire 70-second showcase and download an HD WebM file.";
+          if (!confirm(confirmMsg)) return;
+          stream = await navigator.mediaDevices.getDisplayMedia({ video: { frameRate: 30 }, audio: true });
+        } else {
+          stream = canvas.captureStream(30);
+        }
+
+        recordedChunks = [];
+        mediaRecorder = new MediaRecorder(stream, {
+          mimeType: MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9' : 'video/webm'
+        });
+
+        mediaRecorder.ondataavailable = (e) => {
+          if (e.data.size > 0) recordedChunks.push(e.data);
+        };
+
+        mediaRecorder.onstop = () => {
+          const blob = new Blob(recordedChunks, { type: 'video/webm' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.style.display = 'none';
+          a.href = url;
+          a.download = `Novel-Writing-Skills-Suite-70s-Showcase-${Date.now()}.webm`;
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(() => {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+          }, 100);
+          resetRecordUI();
+        };
+
+        mediaRecorder.start();
+        isRecording = true;
+        recordIcon.textContent = '⏹';
+        recordLabel.textContent = currentLang === 'zh' ? '停止并导出' : 'Stop & Export';
+        recordBtn.className = 'flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg border border-emerald-400 transition animate-pulse';
+        recordingIndicator.classList.remove('hidden');
+
+        jumpToScene(0);
+        if (!isPlaying) togglePlay();
+
+      } catch (err) {
+        console.warn("Recording cancelled or unauthorized", err);
+      }
+    }
+
+    function stopRecording() {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+        if (mediaRecorder.stream) {
+          mediaRecorder.stream.getTracks().forEach(track => track.stop());
+        }
+      }
+      resetRecordUI();
+    }
+
+    function resetRecordUI() {
+      isRecording = false;
+      recordIcon.textContent = '⏺';
+      recordLabel.textContent = currentLang === 'zh' ? '录制导出' : 'Export Video';
+      recordBtn.className = 'flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-rose-600/90 hover:bg-rose-500 text-white shadow-lg shadow-rose-600/30 border border-rose-400/30 transition';
+      recordingIndicator.classList.add('hidden');
+    }
+
+    // Dynamic Cosmic Canvas Background
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+
+    function resizeCanvas() {
+      width = canvas.width = theaterBox.clientWidth;
+      height = canvas.height = theaterBox.clientHeight;
+    }
+
+    function initParticles() {
+      particles = [];
+      const count = Math.floor(width * 0.04);
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.5) * 0.45,
+          radius: Math.random() * 1.5 + 0.5,
+          alpha: Math.random() * 0.5 + 0.2
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Ambient Grid
+      ctx.strokeStyle = 'rgba(99, 102, 241, 0.03)';
+      ctx.lineWidth = 1;
+      const gridSize = 45;
+      for (let x = 0; x < width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      // Nodes & Links
+      ctx.fillStyle = '#818cf8';
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx * playbackRate;
+        p.y += p.vy * playbackRate;
+
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        ctx.globalAlpha = p.alpha;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 90) {
+            ctx.strokeStyle = `rgba(168, 85, 247, ${0.12 * (1 - dist / 90)})`;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.globalAlpha = 1.0;
+      requestAnimationFrame(drawParticles);
+    }
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      initParticles();
+    });
+
+    // Initial Execution
+    resizeCanvas();
+    initParticles();
+    drawParticles();
+    initUI();
+  </script>
+</body>
+</html>

@@ -10,9 +10,16 @@ This skill suite connects story records, planning, drafting, passage review, and
 
 You do not need to memorize all 31 skill names. Start with `novel-router` and describe your task in ordinary language.
 
-[Install / download v1.2](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.2) · [Full guide (Chinese)](docs/novel-skills/skills组使用指南.md) · [Quick start (Chinese)](小说skills-快速开始.md) · [Release history](https://github.com/Huo0077/novel-writing-skills/releases)
+[🎬 70s Showcase Video](docs/demo.html) · [Install / download v1.2](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.2) · [Full guide (Chinese)](docs/novel-skills/skills组使用指南.md) · [Quick start (Chinese)](小说skills-快速开始.md) · [Release history](https://github.com/Huo0077/novel-writing-skills/releases)
 
 > This is **not a standalone novel generator**. It is a collection of instructions and tools for an AI assistant that can read and edit local files and follow skill workflows. Downloading the files does not automatically enable those abilities in a basic chat interface.
+
+## 🎬 70s Showcase Video
+
+[![Novel Writing Skills Suite — 70-second Showcase Video](docs/assets/novel-skills-demo.gif)](docs/demo.html)
+
+> 📺 **Interactive Web Player**: Click the banner above or open [`docs/demo.html`](docs/demo.html) (Bilingual toggle, AI voice narration, and WebM export)  
+> 📥 **Direct Video Download**: [`docs/assets/novel-skills-demo.mp4`](docs/assets/novel-skills-demo.mp4) (1080P)
 
 ## Why this suite exists
 

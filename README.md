@@ -10,9 +10,16 @@
 
 你不需要记住 31 个技能名。通过一个入口 `novel-router`，用自然语言说明当前任务即可。
 
-[安装与下载 v1.2](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.2) · [完整使用指南](docs/novel-skills/skills组使用指南.md) · [快速开始](小说skills-快速开始.md) · [历史版本](https://github.com/Huo0077/novel-writing-skills/releases)
+[🎬 70秒官方演示视频](docs/demo.html) · [安装与下载 v1.2](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.2) · [完整使用指南](docs/novel-skills/skills组使用指南.md) · [快速开始](小说skills-快速开始.md) · [历史版本](https://github.com/Huo0077/novel-writing-skills/releases)
 
 > 这不是独立运行的小说生成软件，而是一套供**能读取、编辑本地文件，并遵循技能指令的 AI 助手**使用的流程与工具。普通聊天窗口不会因为下载了文件就自动具备这些能力。
+
+## 🎬 70 秒官方演示视频
+
+[![小说创作 Skills 组 · 70秒官方架构演示](docs/assets/novel-skills-demo.gif)](docs/demo.html)
+
+> 📺 **在线全屏交互放映**：点击上方动图或直接访问 [`docs/demo.html`](docs/demo.html)（内置中英双语切换、拟真人声配音解说、音效合成与 WebM 视频导出）  
+> 📥 **高清视频直链**：[`docs/assets/novel-skills-demo.mp4`](docs/assets/novel-skills-demo.mp4) (1080P)
 
 ## 为什么需要这套技能组？
 
