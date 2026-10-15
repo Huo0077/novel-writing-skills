@@ -2,6 +2,8 @@
 
 [简体中文](README.md) | **English**
 
+![Novel Writing Skills — Keep your story together. AI-assisted fiction with author-controlled decisions.](docs/assets/novel-writing-skills-cover.png)
+
 **Write long-form fiction with AI—without giving up control of your story.**
 
 This skill suite connects story records, planning, drafting, passage review, and revision. It helps writers address continuity drift, interchangeable characters, repetitive prose, uneven pacing, and overly obvious foreshadowing through a structured, traceable workflow.
