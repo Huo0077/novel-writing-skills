@@ -1,5 +1,44 @@
 # 版本发布记录
 
+# 小说创作 Skills v1.2 · npx标准安装与作品初始化
+
+## 新安装入口
+
+```bash
+npx skills add Huo0077/novel-writing-skills
+```
+
+选择全部31技能和目标assistant。已实测的明确Codex命令：
+
+```bash
+npx skills@1.7.2 add Huo0077/novel-writing-skills --agent codex --skill '*' --copy
+node .agents/skills/novel-router/scripts/init-project.mjs --target .
+node .agents/skills/novel-router/scripts/init-project.mjs --target . --apply
+node .agents/skills/novel-router/scripts/init-project.mjs --check
+```
+
+复用标准skills CLI，没有另发同名npm注册包或postinstall。安装器本次要求Node>=22.20；初始化只用Node标准库、不要求Python。
+
+## 功能
+- 技能资源按实际安装目录定位，支持本次.agents/skills项目安装和隔离HOME全局演练；source/ZIP仍保留.codex/skills布局。
+- Node脚本区分preview/apply/check；仅新增缺失.novel种子，不覆盖作品、不复制QA，不把全局技能目录当小说。
+- 初始资源不足会明确报错，需安装完整31模块；不是只router也能全自动写作。
+- 31技能各带MIT声明，ZIP附LICENSE、双语README、封面、Node脚本和共享协议。
+- README/快速开始/使用指南以npx为首选，ZIP备用。可选Python审查与完整QA仍需Python/PyYAML。
+
+## 实际验收
+Windows、Node26.3.0、npm11.16.0、skills1.7.2；本地标准安装、受控HOME全局安装、从公开GitHub安装均实际运行。
+148案例：147通过、1Python符号链接权限项跳过、0失败；新增Node23项通过。
+preview无写入；重复apply零新增；用户字段字节保留；标准CLI卸载隔离skill后.novel保留。
+Node --check仅验安装资源，不解析用户YAML/小说事实。不承诺所有客户端自动发现、跨平台、独立读者或文学质量已经验证。
+
+## 版本与数据
+保留v1.0/v1.1原ZIP和标签，v1.2不是重写历史。
+下载包只含技能、空白seed、隔离测试与使用资料，无当前作者真实小说正文/正史/提案/检查点。
+标准skills安装器更新可能替换同名技能目录，修改过的skill先备份；Node初始化的“只增不覆盖”只针对作品资料。
+
+---
+
 # 小说创作 Skills v1.1 · 校验修复与渐进提问
 
 ## 修复

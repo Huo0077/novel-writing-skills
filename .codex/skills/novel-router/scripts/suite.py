@@ -150,7 +150,7 @@ def _inventory(root, include_tests=False, include_docs=False):
             if rel.parts[0] == "fixtures" or (len(rel.parts) == 1 and p.name.startswith("test_") and p.suffix == ".py"):
                 items[p.relative_to(root).as_posix()] = p.read_bytes()
     if include_docs:
-        for name in ("README.md", "README.en.md", "LICENSE", "requirements.txt", "package.json", "docs/assets/novel-writing-skills-cover.png", "docs/installation-v1.2.md", "小说skills-快速开始.md", "docs/novel-skills/skills组使用指南.md"):
+        for name in ("README.md", "README.en.md", "LICENSE", "requirements.txt", "package.json", "docs/assets/novel-writing-skills-cover.png", "docs/installation-v1.2.md", "docs/installation-v1.2.json", "docs/novel-skills/GitHub-v1.1-复核报告.md", "docs/novel-skills/verification/v1.1-public-verification.json", "RELEASES.md", "小说skills-快速开始.md", "docs/novel-skills/skills组使用指南.md"):
             p=root/name
             if p.is_file(): items[name]=p.read_bytes()
     return items, catalog

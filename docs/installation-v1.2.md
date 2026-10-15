@@ -16,7 +16,13 @@ The suite uses the standard skills CLI, not a separately published npm package. 
 - 通过标准CLI在隔离项目卸载skill后，创作者.novel保持；不操作用户真实global目录。
 - 新Node测试23项；Python便携目录/出包测试3项；旧122案例需与新增项一起回归。
 
-本节为真实本地源码安装演练，不自动等于GitHub远程分发已通过。远程包的安装、完整回归和迁移结果将在发布前追加；不能根据源码演练宣称Linux/macOS或所有助手都已测。
+## GitHub分发与完整回归 / Public-source validation
+
+已在全新隔离作品目录实际运行README的skills@1.7.2命令，从公开GitHub仓库安装31技能（候选提交3d01b015）。已安装init-project.mjs与测试源码逐字节一致，catalog=1.2，--check通过；preview不建目录，apply后用户填写内容保留，第二次零新增，.novel未复制QA。
+完整回归148案例：147通过、1项Python符号链接权限测试跳过、0失败；新增Node23项全部通过。本次global模拟先核HOME为工作区隔离目录，不动真实全局设置。
+安装/初始化工具与对应路径已实测，不能据此宣称Linux/macOS、其他agent、客户端UI发现或文学效果已测。
+
+机器可读摘要：[installation-v1.2.json](installation-v1.2.json)。
 
 ## 命令 / Commands
 

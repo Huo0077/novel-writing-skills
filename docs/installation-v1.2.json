@@ -1,0 +1,28 @@
+{
+  "release": "v1.2",
+  "node": "v26.3.0",
+  "npm": "11.16.0",
+  "installer": "skills@1.7.2",
+  "installer_minimum_node": "22.20.0",
+  "platform": "Windows only",
+  "source_tests": {
+    "executed": 148,
+    "passed": 147,
+    "skipped": 1,
+    "failed": 0
+  },
+  "local_source_install": true,
+  "public_GitHub_install": true,
+  "public_source_commit": "3d01b015c4c74ece3adc3a31d43f074dd78b2888",
+  "isolated_home_global_install": true,
+  "uninstall_preserves_project": true,
+  "python_required_for_project_initialization": false,
+  "QAstories_copied_to_user_project": false,
+  "new_npm_registry_package_published": false,
+  "unverified": [
+    "Linux/macOS",
+    "other agent clients",
+    "client UI auto-discovery",
+    "independent reader or literary quality"
+  ]
+}
