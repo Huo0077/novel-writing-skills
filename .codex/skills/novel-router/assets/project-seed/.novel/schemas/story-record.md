@@ -59,3 +59,6 @@ proposal.status（proposed/accepted/modified/rejected）为审议进度，和 tr
 作者真相与正文公开材料分别成产物；“禁止揭示”提示也不得写出隐藏答案。本协议是行为规约，不是自动事实推理数据库。
 
 缺信息与冲突依据 .novel/schemas/clarification-contract.md 逐项向用户提供选项；不默认批准候选，也不自动把一处回答扩成全局授权。
+
+## v1.2 安装路径
+本协议由已安装router/assets/project-seed随技能携带。源仓库.codex/skills是开发布局，不是所有客户端安装路径。项目级技能可在.agents/skills等集合目录，全局技能可位于作品之外；references/scripts/assets按skill自身位置解析，作品.novel始终按用户明确作品根目录。Node初始化只补作品资源，不把QA/模板例子当故事，也不自动安装Python。

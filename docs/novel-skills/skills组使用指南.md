@@ -1,6 +1,22 @@
+# v1.2 安装入口（先读）
+
+本指南保留既有技能职责和历史命令，但用户优先使用标准npx安装：
+```bash
+npx skills@1.7.2 add Huo0077/novel-writing-skills --agent codex --skill '*' --copy
+node .agents/skills/novel-router/scripts/init-project.mjs --target .
+```
+确认后加--apply，--check只检查安装资源。需要全部31模块，单router不完整。安装器本次要求Node>=22.20；全局安装请用实际全局脚本路径和明确作品--target。
+作品初始化不需要Python、不重装skill、不复制QA/真实故事、不覆盖旧稿。旧文件保留不等于已自动升级，缺信息按澄清协议问用户。
+
+以下出现.codex/skills的命令和目录表示源码/ZIP布局，不能直接套到所有助手；标准Codex安装本次使用.agents/skills。references/scripts/assets按实际skill目录，兄弟模块按实际集合，.novel按作品根目录。
+完整Python QA在源码/ZIP运行；用户安装使用Node资源检查即可。独立npm注册包未发布，npm test为私有开发脚本，不是全套文学验证。
+完整当前步骤和平台边界见[安装验收](../installation-v1.2.md)。
+
+---
+
 # 小说创作 skills 组使用指南
 
-版本：v1.1（验证器修复 + 全组渐进提问），2026-10-14。
+版本：v1.2（npx标准安装 + 路径兼容 + 零依赖Node初始化），2026-10-14。
 本项目技能在 .codex/skills/，资料在 .novel/。这不是全局安装证明；当前会话若不能自动发现，可明确提供 SKILL.md 绝对路径并要求遵循。目录存在不代表某工具已经自动执行。
 
 ## 已实现的 31 项

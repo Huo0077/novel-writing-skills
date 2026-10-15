@@ -12,7 +12,7 @@ description: Initialize or resume a novel project with a durable .novel story-st
 ## Workflow
 
 1. 检查项目根目录是否已有 `.novel/project.yaml`。
-2. 没有时，先使用 novel-router/scripts/suite.py bootstrap <作品目录> 预览；确认后加 --apply 复制共享空白种子、技能和隔离QA，仅新增缺失文件。已有同路径档案原样保留，再校验兼容性。已有项目时，只读取检查点与待确认提案。
+2. 没有或共享资料不足时，从实际已安装novel-router/scripts/init-project.mjs运行 `node <实际脚本路径> --target <作品目录>` 预览；用户允许后加--apply，仅新增空白作品资料，不重装技能、不复制QA或覆盖已有文件。已有项目先恢复检查点与待确认事项；保留文件后仍需查旧协议兼容性。
 3. 按 `references/question-flow.md` 逐阶段提问；阶段是路线图，一次仅问其中一个当前关键问题，提供2–3个方向及自定义/暂缓。
 4. 将创作者明确确认的内容写入 `CANON`；将未决定的 AI 建议写入 `PROPOSAL`，不得假装成正史。
 5. 每轮完成后报告：已确认内容、尚未确定内容、下一组问题和可以安全进行的下一步。
@@ -32,7 +32,10 @@ description: Initialize or resume a novel project with a durable .novel story-st
 - 检查点协议：`.novel/schemas/checkpoint.md`
 
 ## 可迁移资源
-共享协议与模板来自项目内 `.codex/skills/novel-router/assets/project-seed/.novel/`，默认配置不是作者已确认设定。缺少种子时停下说明，不假装完成初始化。
+共享协议与模板来自实际安装的兄弟novel-router目录的assets/project-seed/.novel/，默认配置不是作者已确认设定。全局安装也只在--target指定作品目录初始化；缺种子/兄弟技能时停下说明。
 
 ## 缺信息与用户选项
 遵守 `.novel/schemas/clarification-contract.md`：先查已有答案，一次问一个当前关键缺口，给2–3个不同方向及后果，并允许自定义或暂不决定。未知/冲突/授权缺失不能靠猜测补正史；仅暂停依赖步骤。用户答复按实际来源和明确范围记录，高风险许可不足仍交novel-canon暂停。
+
+## 安装位置与作品目录
+仅作者协作执行以下资源恢复；reader首次阅读仍跳过作者档案和带答案资源。技能内references/scripts/assets相对于本SKILL.md所在目录；兄弟技能相对于同一已安装技能集合查找，不假定一定在.codex/skills。作品资料的.novel路径相对用户当前作品根目录，不能相对全局技能目录。缺共享资料时由novel-project-init运行router随附的Node初始化预览，经允许再应用；缺技能时提示安装完整组，不假装已读取。

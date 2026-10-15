@@ -10,7 +10,7 @@ This skill suite connects story records, planning, drafting, passage review, and
 
 You do not need to memorize all 31 skill names. Start with `novel-router` and describe your task in ordinary language.
 
-[Download v1.1](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.1) · [Full guide (Chinese)](docs/novel-skills/skills组使用指南.md) · [Quick start (Chinese)](小说skills-快速开始.md) · [Release history](https://github.com/Huo0077/novel-writing-skills/releases)
+[Install / download v1.2](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.2) · [Full guide (Chinese)](docs/novel-skills/skills组使用指南.md) · [Quick start (Chinese)](小说skills-快速开始.md) · [Release history](https://github.com/Huo0077/novel-writing-skills/releases)
 
 > This is **not a standalone novel generator**. It is a collection of instructions and tools for an AI assistant that can read and edit local files and follow skill workflows. Downloading the files does not automatically enable those abilities in a basic chat interface.
 
@@ -83,29 +83,56 @@ It does not promise a high-quality, fully unattended novel generated from a sing
 
 ## Get started in three steps
 
-### 1. Download and open the complete project
+### 1. Install the complete skill suite with npx (recommended)
 
-Download `novel-writing-skills-v1.1.zip` from the [v1.1 Release](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.1). Extract it into an **empty new directory**, then open that directory with your AI assistant.
+With Node.js and npm/npx available, open a terminal in your writing project:
 
-Keep the complete directory, including `.codex/` and `.novel/`; some file managers hide dot-prefixed folders. Do not copy just one `SKILL.md`, because the skills share protocols and templates.
+```bash
+npx skills add Huo0077/novel-writing-skills
+```
 
-Do not extract the ZIP over an existing novel project. Start in a new directory, then use the additive initialization workflow to bring in existing material. See the [full guide (Chinese)](docs/novel-skills/skills组使用指南.md).
+Select **all 31 skills** and your target assistant. Installing only `novel-router` leaves execution modules missing. Skill installation does not initialize a novel, invent story facts, or install Python.
 
-### 2. Ask your assistant to use the router
+The following Codex project install was tested with `skills@1.7.2`:
 
-Copy this request:
+```bash
+npx skills@1.7.2 add Huo0077/novel-writing-skills --agent codex --skill '*' --copy
+```
+
+The tested installer requires **Node.js ≥ 22.20.0**; follow the requirements of future installer versions. `--copy` avoids relying on symlink permissions. Reinstalling/updating may replace same-named skill directories, so back up any customized skills. This is separate from the non-overwriting story initialization below.
+
+The tested Codex installation uses `.agents/skills/`. Other assistants may use different locations; follow the installer's output. `.codex/skills/` in this repository is the source layout, not a universal installation path.
+
+### 2. Initialize your writing project, then start the assistant
+
+Preview initialization in the same project; no Python or third-party Node package is needed:
+
+```bash
+node .agents/skills/novel-router/scripts/init-project.mjs --target .
+```
+
+After reviewing the proposed files, create missing `.novel/` resources:
+
+```bash
+node .agents/skills/novel-router/scripts/init-project.mjs --target . --apply
+node .agents/skills/novel-router/scripts/init-project.mjs --check
+```
+
+Initialization adds clean story resources only. It does not overwrite manuscripts, reinstall skills, or copy QA stories. Existing files are preserved, not automatically migrated. `--check` verifies installed modules/resources, not story facts, YAML contents, or literary quality.
+
+Then ask your assistant:
 
 ```text
-Read .codex/skills/novel-router/SKILL.md in this project and follow it for my writing task.
+Read the installed novel-router/SKILL.md for this project and follow it for my writing task.
 
 I want to start a novel. First learn my goals and existing ideas, asking one key question at a time.
 When information is missing, offer 2–3 distinct directions with their implications.
 Let me provide my own answer or defer the decision. Do not turn your recommendation into canon.
 ```
 
-If the assistant cannot find the file, provide the **absolute path** to `novel-router/SKILL.md` in your extracted project. File availability does not prove automatic skill loading; explicitly ask it to read the instructions when needed.
+If it cannot find the entry, provide the actual absolute path. **Successful file installation does not prove automatic skill loading in every client**; reopen the session if needed and explicitly ask it to read the router.
 
-Already have a draft? Provide the latest chapter, relevant records, or the current problem, and distinguish confirmed material from tentative ideas. You do not need a complete story encyclopedia before starting.
+Existing manuscripts can stay where they are. Supply the current chapter and relevant facts rather than a complete encyclopedia. See below for global installation and the ZIP fallback.
 
 ### 3. Choose your collaboration mode
 
@@ -178,7 +205,7 @@ Record unfulfilled promises, clues to advance, the next safe task, and informati
 ## Where your writing lives
 
 ```text
-.codex/skills/   Skill instructions and tools; novel-router is the entry point
+.agents/skills/  Standard-install example; location depends on the assistant
 .novel/
   canon/        World, characters, timeline, events, clues, and information boundaries
   planning/     Outline, chapter plans, and scene plans
@@ -196,31 +223,44 @@ Characters and stories in test directories are **QA fixtures, not your novel's c
 
 > **Protect your unpublished work:** This repository is public. Do not push your populated `.novel/`, prose, author secrets, or private proposals into it. Work locally or in your own private workspace, and maintain backups.
 
-## Optional tools and checks
+## Global installation, ZIP fallback, and optional tools
 
-Everyday use involves an assistant reading and following the skills. Statistics, packet preparation, suite validation, and migration tools require Python; full validation also requires PyYAML.
+### Global installation
 
-**Language scope:** Most skill instructions and reference materials are currently in Chinese. This English README does not imply that the entire suite is localized or that English-fiction performance has been validated. The expression analyzer's default phrases, syntax patterns, and character-fragment analysis target Chinese prose. Explicit phrase matching is configurable, but it is not a complete English linguistic analyzer.
+To use the skills across projects:
 
-From the project root:
+```bash
+npx skills@1.7.2 add Huo0077/novel-writing-skills --global --agent codex --skill '*' --copy
+```
+
+This does **not** create a writing project. Ask the assistant to locate the global `novel-router/scripts/init-project.mjs` and run its absolute path with `--target YOUR_PROJECT`, preview first, then `--apply` after approval. Never use the global skill directory as manuscript storage. The isolated uninstall test confirmed that removing skills leaves `.novel/` intact.
+
+### ZIP fallback
+
+Download `novel-writing-skills-v1.2.zip` from the [v1.2 Release](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.2) and extract into an empty directory. The ZIP retains the repository's `.codex/skills/` layout:
+
+```bash
+node .codex/skills/novel-router/scripts/init-project.mjs --target . --apply
+```
+
+Do not extract over an existing manuscript. Keep the hidden `.codex/` and `.novel/` directories; one standalone `SKILL.md` does not include the suite's dependencies.
+
+### Development and complete validation
+
+Installing/initializing requires Node only. Existing expression statistics, reader-packet tools, and complete Python regressions still have **optional Python/PyYAML requirements**; the installer does not install Python. Run complete QA in the repository/ZIP source layout, not an installed story project that contains no QA fixtures:
 
 ```powershell
 python -m pip install "PyYAML>=6.0,<7.0"
 python .codex/skills/novel-router/scripts/suite.py validate --tests
 ```
 
-Preview initialization before applying it:
+In a repository checkout, `npm test` runs only the Node initializer tests, not all Python checks or literary evaluations. There is no separately published same-name npm package, registry publication, or automatic postinstall; `skills` is the reused installer.
 
-```powershell
-python .codex/skills/novel-router/scripts/suite.py bootstrap my-new-novel
-python .codex/skills/novel-router/scripts/suite.py bootstrap my-new-novel --apply
-```
-
-Initialization preserves existing files, but preservation is not an automatic version merge. Existing projects still need compatibility review. An external ZIP extractor is not covered by this rule; do not extract over your old project.
+**Language scope:** Most skills and references are in Chinese. This English README does not imply complete localization or validated English-fiction performance. Default expression phrases, syntax patterns, and character fragments target Chinese prose; configurable phrase matching is not a complete English linguistic analyzer.
 
 ## What has—and has not—been verified
 
-v1.1 fixes six state-validation defects and adds the shared clarification protocol. Re-downloading the public Release and running validation produced **122 cases: 121 passed, 1 skipped because of symbolic-link permissions, and 0 failures**.
+v1.2 retains the six v1.1 validation fixes and clarification protocol, adding standard skill installation, portable resource lookup, and Node initialization. See the [v1.2 installation validation report](docs/installation-v1.2.md) for the actual environments and checks. The historical v1.1 recheck ran 122 cases, with 121 passed and 1 permissions-related skip.
 
 These checks verify file structures, tools, and handoffs—not independent model conversations, human first-read reactions, or long-form literary quality. Keep these limits in mind:
 
@@ -230,7 +270,7 @@ These checks verify file structures, tools, and handoffs—not independent model
 - Separating public writer packets from author notes is a procedural boundary, not technical access isolation.
 - Global installation, automatic UI discovery, and autonomous multi-agent writing are not guaranteed.
 
-See the [verification report (Chinese)](docs/novel-skills/GitHub-v1.1-复核报告.md) and [machine-readable summary](docs/novel-skills/verification/v1.1-public-verification.json). Historical v1.0 remains available in Releases, but has known validation defects; use v1.1.
+See the [verification report (Chinese)](docs/novel-skills/GitHub-v1.1-复核报告.md) and [machine-readable summary](docs/novel-skills/verification/v1.1-public-verification.json). Historical v1.0 remains available in Releases, but has known validation defects; use v1.2.
 
 ## License
 
@@ -238,7 +278,7 @@ This project is licensed under the [MIT License](LICENSE). You may use, modify, 
 
 The license covers project files supplied by the project author, including code, skill instructions, protocols, and templates. **It does not require you to publish your own novels, drafts, settings, or writing outputs under MIT**, nor does it grant the project author rights to those works. Third-party materials remain subject to their applicable terms; this license alone does not guarantee ownership of AI-generated content.
 
-Historical v1.0 and v1.1 download ZIPs are unchanged and were not repackaged to include a license file. If using those downloads, also consult and retain the repository's [LICENSE](LICENSE).
+The v1.2 ZIP includes LICENSE, and each independently installed skill includes LICENSE.txt. Historical v1.0/v1.1 ZIPs remain unchanged; when using those downloads, also retain the repository’s [LICENSE](LICENSE).
 
 ## Further reading and feedback
 

@@ -15,11 +15,19 @@ import subprocess
 import sys
 import zipfile
 
-ALLOWED_SUFFIXES = {".md", ".yaml", ".yml", ".py", ".json", ".txt"}
+ALLOWED_SUFFIXES = {".md", ".yaml", ".yml", ".py", ".json", ".txt", ".mjs", ".png"}
 MANIFEST = "novel-suite-manifest.json"
 
 
-def _router(root): return Path(root) / ".codex/skills/novel-router"
+def _skills(root):
+    root = Path(root)
+    for relative in (".codex/skills", ".agents/skills", ".claude/skills"):
+        folder = root / relative
+        if (folder / "novel-router/SKILL.md").is_file():
+            return folder
+    return root / ".codex/skills"
+
+def _router(root): return _skills(root) / "novel-router"
 
 def _seed(root): return _router(root) / "assets/project-seed"
 
@@ -56,7 +64,7 @@ def validate_suite(root: Path) -> dict:
         errors.append("cannot load catalog/dependency: " + str(exc));return report
     names = [x["name"] for x in catalog["skills"]]
     report["skill_count"] = len(names)
-    actual = {p.parent.name for p in (root/".codex/skills").glob("novel-*/SKILL.md")}
+    actual = {p.parent.name for p in _skills(root).glob("novel-*/SKILL.md")}
     for name in sorted(actual-set(names)): errors.append("uncatalogued skill: " + name)
     for route in catalog["routes"]:
         if not isinstance(route, dict) or not isinstance(route.get("chain"), list) or not route["chain"]:
@@ -64,7 +72,7 @@ def validate_suite(root: Path) -> dict:
         for name in route["chain"]:
             if name not in names: errors.append("unknown route module: " + str(name))
     for name in names:
-        folder = root/".codex/skills"/name
+        folder = _skills(root)/name
         p = folder/"SKILL.md"
         if not p.is_file(): errors.append("missing skill: " + name);continue
         try:
@@ -84,7 +92,7 @@ def validate_suite(root: Path) -> dict:
                 elif ref.startswith(".novel/"):
                     target = root/ref
                     if not target.is_file(): target = _seed(root)/ref
-                elif ref.startswith(".codex/"): target = root/ref
+                elif ref.startswith(".codex/skills/"): target = _skills(root)/ref[len(".codex/skills/"): ]
                 else: continue
                 if not target.is_file(): errors.append("missing reference: " + name + " -> " + ref)
         except (OSError, ValueError, TypeError, KeyError, yaml.YAMLError) as exc:
@@ -100,7 +108,7 @@ def validate_suite(root: Path) -> dict:
                     errors.append("seed mismatch: " + category + "/" + p.name)
     # A static skill check must not silently skip broken live state/configuration.
     if (root/".novel/project.yaml").is_file():
-        validator_path = root/".codex/skills/novel-canon/scripts/validate_novel_project.py"
+        validator_path = _skills(root)/"novel-canon/scripts/validate_novel_project.py"
         if not validator_path.is_file():
             errors.append("missing live-project validator: " + str(validator_path))
         else:
@@ -129,8 +137,10 @@ def _inventory(root, include_tests=False, include_docs=False):
     catalog = _catalog(root)
     items = {}
     for entry in catalog["skills"]:
-        folder = root/".codex/skills"/entry["name"]
-        for p in _files(folder): items[p.relative_to(root).as_posix()] = p.read_bytes()
+        folder = _skills(root)/entry["name"]
+        for p in _files(folder):
+            name = (Path(".codex/skills")/entry["name"]/p.relative_to(folder)).as_posix()
+            items[name] = p.read_bytes()
     for p in _files(_seed(root)):
         items[p.relative_to(_seed(root)).as_posix()] = p.read_bytes()
     if include_tests and (root/".novel/tests").is_dir():
@@ -140,7 +150,7 @@ def _inventory(root, include_tests=False, include_docs=False):
             if rel.parts[0] == "fixtures" or (len(rel.parts) == 1 and p.name.startswith("test_") and p.suffix == ".py"):
                 items[p.relative_to(root).as_posix()] = p.read_bytes()
     if include_docs:
-        for name in ("小说skills-快速开始.md", "docs/novel-skills/skills组使用指南.md"):
+        for name in ("README.md", "README.en.md", "LICENSE", "requirements.txt", "package.json", "docs/assets/novel-writing-skills-cover.png", "docs/installation-v1.2.md", "小说skills-快速开始.md", "docs/novel-skills/skills组使用指南.md"):
             p=root/name
             if p.is_file(): items[name]=p.read_bytes()
     return items, catalog
@@ -229,6 +239,16 @@ def _run_tests(root):
         log=proc.stdout+proc.stderr
         match=re.search(r"Ran (\d+) tests?",log)
         results.append({"group":name,"returncode":proc.returncode,"test_count":int(match.group(1)) if match else 0,"log":log})
+    node_test = _router(root)/"tests/test-init-project.mjs"
+    if node_test.is_file():
+        try:
+            proc = subprocess.run(["node", "--test", str(node_test)], cwd=root, capture_output=True, text=True, encoding="utf-8")
+            log = proc.stdout + proc.stderr
+            matches = re.findall(r"(?:#|ℹ) tests (\d+)", log)
+            count = int(matches[-1]) if matches else 0
+            results.append({"group":"node_init","returncode":proc.returncode,"test_count":count,"log":log})
+        except OSError as exc:
+            results.append({"group":"node_init","returncode":1,"test_count":0,"log":"Node.js is required for v1.2 installation tests: "+str(exc)})
     return results
 
 

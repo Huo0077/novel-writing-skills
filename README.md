@@ -10,7 +10,7 @@
 
 你不需要记住 31 个技能名。通过一个入口 `novel-router`，用自然语言说明当前任务即可。
 
-[下载 v1.1](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.1) · [完整使用指南](docs/novel-skills/skills组使用指南.md) · [快速开始](小说skills-快速开始.md) · [历史版本](https://github.com/Huo0077/novel-writing-skills/releases)
+[安装与下载 v1.2](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.2) · [完整使用指南](docs/novel-skills/skills组使用指南.md) · [快速开始](小说skills-快速开始.md) · [历史版本](https://github.com/Huo0077/novel-writing-skills/releases)
 
 > 这不是独立运行的小说生成软件，而是一套供**能读取、编辑本地文件，并遵循技能指令的 AI 助手**使用的流程与工具。普通聊天窗口不会因为下载了文件就自动具备这些能力。
 
@@ -83,29 +83,56 @@
 
 ## 开始使用：三步
 
-### 1. 下载并打开完整项目
+### 1. 用 npx 安装完整技能组（推荐）
 
-到 [v1.1 Release](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.1) 下载 `novel-writing-skills-v1.1.zip`，解压到一个**空的新目录**，然后让你的 AI 助手打开该目录。
+先准备 Node.js 与 npm/npx。在你的小说项目目录打开终端，运行：
 
-保留完整目录，尤其是 `.codex/` 和 `.novel/`；部分文件管理器会隐藏它们。不要只复制一个 `SKILL.md`，因为技能之间共用协议与模板。
+```bash
+npx skills add Huo0077/novel-writing-skills
+```
 
-已有小说不要直接用 ZIP 覆盖。可以先在新目录使用，再让助手按只增不覆盖的初始化流程接入你的原稿；具体见[使用指南](docs/novel-skills/skills组使用指南.md)。
+按安装器提示选择 **全部 31 个技能** 和目标助手。仅安装 `novel-router` 会缺少实际执行模块；安装器不会替你初始化作品、创作内容或自动装 Python。
 
-### 2. 告诉助手使用总控入口
+已用 `skills@1.7.2` 实测的 Codex 项目级安装命令：
 
-复制下面这段话：
+```bash
+npx skills@1.7.2 add Huo0077/novel-writing-skills --agent codex --skill '*' --copy
+```
+
+本次实测安装器要求 **Node.js ≥ 22.20.0**，后续版本请以其提示为准。`--copy` 复制技能，避免依赖符号链接权限；重新安装/更新可能替换同名技能目录，先备份你手改过的技能。这个保护不等同于下一步作品资料的“只增不覆盖”。
+
+Codex 的本次项目安装位置为 `.agents/skills/`；其他助手选择对应 agent，按安装器实际输出定位。仓库源码中的 `.codex/skills/` 是开发布局，不应拿它当所有客户端的安装位置。
+
+### 2. 初始化作品档案，再让助手开始
+
+在同一作品目录预览初始化，不需要 Python 或额外 Node 依赖：
+
+```bash
+node .agents/skills/novel-router/scripts/init-project.mjs --target .
+```
+
+确认预览范围后，补齐缺失的 `.novel/` 文件：
+
+```bash
+node .agents/skills/novel-router/scripts/init-project.mjs --target . --apply
+node .agents/skills/novel-router/scripts/init-project.mjs --check
+```
+
+初始化只增加空白资料，不覆盖原稿、不重装技能、不复制 QA 故事；已有同路径文件保留，但旧格式仍需检查。`--check` 只核安装资源和技能是否齐全，不是小说事实、YAML内容或文学质量校验。
+
+然后告诉助手：
 
 ```text
-请读取当前项目的 .codex/skills/novel-router/SKILL.md，并按它处理我的小说任务。
+请读取本项目已安装的 novel-router/SKILL.md，并按它处理我的小说任务。
 
 我想开始一部新小说。先了解我的创作目标和已有想法，一次只问一个关键问题。
 缺少信息时，给我 2–3 个不同方向及其影响，也允许我自己补充或暂时不决定。
 不要把你推荐的方案直接当成我的设定。
 ```
 
-如果助手找不到文件，提供你解压目录中 `novel-router/SKILL.md` 的**完整路径**。能找到文件并不等于应用会自动加载技能，必要时要求它先阅读指令再开始。
+如果助手找不到技能，提供实际 `novel-router/SKILL.md` 的完整路径。**安装文件成功不等于所有客户端都自动加载了技能**；必要时重新打开会话并明确要求阅读入口。
 
-已经有原稿？把最后一章、相关设定或当前问题提供给助手，明确哪些已经确定、哪些仍是草稿；不必一次整理整部小说百科。
+已有原稿可保留在原处，先提供当前章节和必要设定，不用一次填完整百科。全局安装、ZIP备用与迁移见下方。
 
 ### 3. 选择你希望的协作方式
 
@@ -177,7 +204,7 @@
 ## 写作资料放在哪里？
 
 ```text
-.codex/skills/   技能指令与工具；novel-router 是统一入口
+.agents/skills/  标准安装示例；实际位置取决于目标助手，novel-router 是统一入口
 .novel/
   canon/        世界、人物、时间线、关键事件、伏笔与信息边界
   planning/     总纲、章节与场景计划
@@ -195,31 +222,44 @@
 
 > **保护你的原稿与秘密：** 本仓库是公开的。不要将填写了真实作品内容的 `.novel/`、正文、作者真相或私人提案直接提交到公开仓库。使用本地目录或你自己的私有工作区，并自行做好备份。
 
-## 工具与检查（可选）
+## 全局安装、ZIP备用与可选工具
 
-日常使用以助手读取技能并执行流程为主。表达统计、材料准备、完整验收和迁移工具需要 Python；运行整组验收还需要 PyYAML。
+### 全局安装
 
-目前技能正文与大部分参考资料以中文为主。英文 README 是使用入口的英文说明，不代表全部技能或工具已本地化；表达统计的默认词组、句式与汉字片段分析也面向中文正文。
+需要跨作品使用时，可安装到用户级技能目录：
 
-在项目根目录执行：
+```bash
+npx skills@1.7.2 add Huo0077/novel-writing-skills --global --agent codex --skill '*' --copy
+```
+
+全局安装后**不会自动生成任何作品档案**。请让助手定位全局 `novel-router/scripts/init-project.mjs`，以脚本绝对路径和 `--target 你的作品目录` 运行预览，确认后加 `--apply`。不要在全局技能文件夹里写小说。卸载技能和删除作品是两件事；本次隔离卸载演练确认 `.novel/` 仍保留。
+
+### ZIP备用安装
+
+从 [v1.2 Release](https://github.com/Huo0077/novel-writing-skills/releases/tag/v1.2) 下载 `novel-writing-skills-v1.2.zip`，解压到空的新目录并让助手打开。ZIP保留 `.codex/skills/` 的仓库布局，可用：
+
+```bash
+node .codex/skills/novel-router/scripts/init-project.mjs --target . --apply
+```
+
+不要直接解压覆盖旧作品；保留 `.codex/`、`.novel/` 隐藏目录。单个 `SKILL.md` 不足以携带共享资料。
+
+### 开发与完整验收
+
+安装/作品初始化只需要 Node。表达统计、读者材料工具和完整 Python 回归仍是**可选 Python/PyYAML 依赖**；Python 未安装时不会自动替你安装。完整QA在仓库/ZIP的源布局运行，不假定技能安装器会为作品复制QA：
 
 ```powershell
 python -m pip install "PyYAML>=6.0,<7.0"
 python .codex/skills/novel-router/scripts/suite.py validate --tests
 ```
 
-初始化新目录先预览，确认后才新增文件：
+仓库也提供 `npm test`，只运行 Node 初始化测试，不伪装为已执行全部 Python 或文学评估。没有独立的同名 npm 注册包、npm publish或隐式postinstall；`skills` 是复用的安装器。
 
-```powershell
-python .codex/skills/novel-router/scripts/suite.py bootstrap 新作品目录
-python .codex/skills/novel-router/scripts/suite.py bootstrap 新作品目录 --apply
-```
-
-初始化工具不会覆盖已有文件；但保留旧文件不等于版本已自动合并，已有作品仍须检查兼容性。ZIP 解压器也不受这条规则保护，因此不要直接解压覆盖旧项目。
+目前技能正文与大部分参考资料以中文为主。英文 README 不代表全部技能或工具已本地化；表达统计的默认词组、句式与汉字片段分析也面向中文正文。
 
 ## 已验证什么，还没验证什么？
 
-v1.1 已修复六类状态校验漏洞，并接入全组澄清协议。公开 Release 重新下载后的验收结果为：**122 个案例，121 通过、1 项因软链接权限限制跳过、0 失败**。
+v1.2 保留 v1.1 的六类校验修复与全组澄清协议，并增加标准技能安装、路径兼容和 Node 初始化。v1.2完整验收结果及实际安装环境见[安装验收报告](docs/installation-v1.2.md)；v1.1历史复核为122案例、121通过、1权限项跳过。
 
 这些检查验证格式、工具和资料交接，**不是**独立模型对话、真人首次阅读或长篇文学质量实验。仍需关注：
 
@@ -229,7 +269,7 @@ v1.1 已修复六类状态校验漏洞，并接入全组澄清协议。公开 Re
 - 公开信息包与作者笔记分离是流程约束，不是技术访问隔离。
 - 未承诺全局安装、界面自动发现或后台自动多代理写作。
 
-完整证据见[复核报告](docs/novel-skills/GitHub-v1.1-复核报告.md)和[验证摘要](docs/novel-skills/verification/v1.1-public-verification.json)。历史 v1.0 保留在 Releases 中，存在已知校验缺陷，建议使用 v1.1。
+完整证据见[复核报告](docs/novel-skills/GitHub-v1.1-复核报告.md)和[验证摘要](docs/novel-skills/verification/v1.1-public-verification.json)。历史 v1.0 保留在 Releases 中，存在已知校验缺陷，建议使用 v1.2。
 
 ## 许可证
 
@@ -237,7 +277,7 @@ v1.1 已修复六类状态校验漏洞，并接入全组澄清协议。公开 Re
 
 该许可适用于本项目作者提供的代码、技能说明、协议、模板及其他项目文件，**不要求你把自己的小说、原稿、设定或写作成果按 MIT 公开**，也不意味着项目作者取得这些作品的权利。第三方材料仍须遵守其适用授权；AI 生成内容的权利归属不由本许可证单独保证。
 
-历史 v1.0、v1.1 下载 ZIP 保持原样，未重打包加入许可证文件；使用下载包时，请同时查阅并保留本仓库的 [LICENSE](LICENSE)。
+v1.2 ZIP包含LICENSE，每个可独立安装的skill也携带LICENSE.txt。历史v1.0、v1.1 ZIP保持原样，使用旧包时请同时查阅并保留本仓库的 [LICENSE](LICENSE)。
 
 ## 更多说明
 

@@ -22,7 +22,7 @@ description: Route natural-language novel creation, drafting, review, revision a
 本次路由、任务范围、必要上下文、最小调用链、实际产物/路径、待确认问题、停止理由和下一步状态。面向创作者用普通语言，不要求记住模块名。
 
 ## 维护与迁移
-按 references/operations.md 使用 scripts/suite.py。bootstrap默认预览，--apply只增不覆盖；package只带技能、共享空白种子和隔离QA，不携带作品正文/正史/提案。
+用户安装使用标准npx skills add并选择完整31技能；首次作品初始化按 references/operations.md 使用 `scripts/init-project.mjs`，无需Python。--target明确作品目录，默认预览，--apply只补缺失.novel资源，不复制技能/QA或覆盖作品。scripts/suite.py保留开发验收与ZIP迁移能力，不混成npm包发布命令。
 不得写入无授权外部目录或宣称全局安装/新会话自动发现已通过。单个skill依赖共享协议，迁移整组而不是只复制SKILL.md。
 
 ## 边界
@@ -35,3 +35,6 @@ description: Route natural-language novel creation, drafting, review, revision a
 ## 缺信息与用户选项
 作者协作路线遵守 `.novel/schemas/clarification-contract.md`：先查已有资料，一次问一个当前关键问题，给2–3个有差异的方向及影响，允许自定义或暂不决定，不替用户默认选。答复只确认明确范围，缺答案时暂停依赖步骤。
 reader独立阅读路线不读作者协议或候选答案；只中性询问阅读材料/范围缺口，不给作者真相选项、不恢复含秘密的档案。
+
+## 安装位置与作品目录
+仅作者协作执行以下资源恢复；reader首次阅读仍跳过作者档案和带答案资源。技能内references/scripts/assets相对于本SKILL.md所在目录；兄弟技能相对于同一已安装技能集合查找，不假定一定在.codex/skills。作品资料的.novel路径相对用户当前作品根目录，不能相对全局技能目录。缺共享资料时由novel-project-init运行router随附的Node初始化预览，经允许再应用；缺技能时提示安装完整组，不假装已读取。

@@ -1,0 +1,12 @@
+{
+  "name": "novel-writing-skills-workspace",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {"node": ">=22.20.0"},
+  "scripts": {
+    "test": "node --test .codex/skills/novel-router/tests/test-init-project.mjs",
+    "init:novel": "node .codex/skills/novel-router/scripts/init-project.mjs"
+  }
+}

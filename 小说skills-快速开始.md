@@ -1,50 +1,41 @@
-# 小说创作 Skills 组 v1.1 · 快速开始
+# 小说创作 Skills v1.2 · 快速开始
 
-## 只需一个入口
+## 1. 在作品目录安装
 
-请让助手读取当前项目 `.codex/skills/novel-router/SKILL.md`，再说：
-
-> 使用 novel-router。我的任务是【开始新小说 / 继续这一场 / 检查前后矛盾 / 去除重复表达 / 改进伏笔】。先选择必要步骤，重大改变先问我。
-
-总控会按任务选择31个模块中的必要部分，不要求你记住全部名字。
-
-## 三种模式
-
-- 作者助手：你决定方向，AI整理、扩写、检查和修订。
-- 协同作者：AI可以提剧情方案，但关键变化需要确认。
-- 半自动长篇：沿已确认范围分批推进，遇重大变化仍停止确认。
-
-统一规则：低风险暂定、中风险阶段确认、高风险立即暂停。写出的正文不是自动正史；计划想完成的不等于实际完成。
-
-## 日常工作
-
-规划当前单位 → 准备有限上下文/公开信息包 → 写一场 → 回审实际事实 → 提交状态变化 → 保存检查点。
-表达回审保护主题、口吻、回环；不是按高频一键换同义词。
-伏笔先服务当前场景，再产生回看意义；真正读者测试只能在没见答案的新上下文或真人那里进行。
-
-## 完整资料
-
-`docs/novel-skills/skills组使用指南.md`：31模块、常用请求、风险机制与工具边界。
-`.novel/`：作品资料；`.codex/skills/`：技能；`tests/`下样例仅用于验证，不是你的作品。
-
-## 新作品与迁移
-
-在现有整组项目里让助手预览bootstrap目标；只有确认后使用--apply。工具只增不覆盖，不删除旧正文，不替你批准新设定。
-发布ZIP要放到空的新目录使用，别直接解压覆盖已有作品；也可由bootstrap安全补缺失资源。
-ZIP带空白配置、9协议、18模板、31技能和隔离QA；不包含当前作品正文、正史、提案或检查点。
-
-## 技术验收（按需）
-
-在项目根目录：
-```powershell
-python .codex/skills/novel-router/scripts/suite.py validate --tests
+准备Node.js/npm；本次实测安装器skills@1.7.2要求Node>=22.20。
+```bash
+npx skills add Huo0077/novel-writing-skills
 ```
-Python环境需要PyYAML（现有技能验证器依赖）。工具格式通过不保证文章精彩或永不遗忘；文学效果需真实作品、独立上下文和读者反馈。
-未承诺全局安装、界面自动发现或后台自动多代理写作。当前会话不启动独立代理，首次阅读测试准备与实际运行分别记录。
+选择全部31技能和目标助手。Codex的明确安装例：
+```bash
+npx skills@1.7.2 add Huo0077/novel-writing-skills --agent codex --skill '*' --copy
+```
+标准安装器可能替换同名skill，请先备份你修改过的技能。作品资料的保护在下一步，不混作一条保证。
 
+## 2. 初始化作品（无需Python）
 
-## 缺信息时怎么协作
+Codex项目安装路径为.agents/skills；其他助手以实际输出为准。
+```bash
+node .agents/skills/novel-router/scripts/init-project.mjs --target .
+```
+先看预览，允许后执行：
+```bash
+node .agents/skills/novel-router/scripts/init-project.mjs --target . --apply
+node .agents/skills/novel-router/scripts/init-project.mjs --check
+```
+只补缺失.novel文件，不覆盖旧稿、不复制QA、不创建正史。--check只验证安装资源，不评小说事实。
+全局安装加--global；使用全局脚本的实际绝对路径，并用--target指定每本作品，不能在全局skill文件夹写小说。
 
-助手先查已有资料，再问一个当前关键问题，给2–3个不同方向和影响；你可选、自己补充或暂不决定。
-没回复不采用默认方案；局部回答仅确认该范围。需要你决定的剧情先暂停，其他安全整理可继续。
-不要求一次写完百科，也不因为选了一个表达方向就把人物秘密定成真。已有明确批准不反复问。
+## 3. 告诉助手
+
+> 请读取实际安装的novel-router/SKILL.md。我的任务是……缺关键资料时一次问一个问题，给不同方向及影响；允许我自定义或暂缓，不默认补设定。
+
+作者助手、协同作者、半自动长篇可选；低风险暂定、中风险阶段确认、高风险暂停。
+计划不等于发生，草稿不自动正史。人物伤势、物品、认知、关系和伏笔由来源记录维护。
+
+## 备用与验证
+
+ZIP解压到空目录，保留隐藏目录；source布局为.codex/skills，同一个Node脚本从该位置运行即可。不要解压覆盖旧作品。
+安装/初始化只需Node；可选的表达统计/读者材料/完整QA仍需Python。开发repo执行npm test仅运行Node测试；完整回归还需Python/PyYAML。
+详情：README.md、README.en.md、docs/installation-v1.2.md和docs/novel-skills/skills组使用指南.md。
+MIT随skill的LICENSE.txt与ZIP的LICENSE分发。独立读者/真实文学效果仍需测试，文件安装不代表所有客户端UI自动发现。
